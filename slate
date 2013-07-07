@@ -1,0 +1,26 @@
+config defaultToCurrentScreen true
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+
+# Abstract positions
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+bind esc:cmd hint ASDFGHJKLQWERTYUIOPCVBN
+
+bind j:alt;cmd ${bottomleft}
+bind l:alt;cmd ${bottomright}
+bind j:ctrl;cmd ${lefthalf}
+bind i:ctrl;cmd: ${full}
+bind l:ctrl;cmd ${righthalf}
+bind j:ctrl;alt;cmd ${topleft}
+bind l:ctrl;alt;cmd ${topright}
+
+# bind pad8 push top bar-resize:screenSizeY/2
+# bind pad2 push bottom bar-resize:screenSizeY/2

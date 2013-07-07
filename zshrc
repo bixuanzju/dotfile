@@ -42,7 +42,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/local/bin:/usr/texbin:/usr/local/Racket/bin:/usr/local/mysql/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 export PATH="$HOME/Library/Haskell/bin:$HOME/scripts:$PATH"
-export PATH="/usr/local/share/npm/bin:/Applications/MATLAB_R2013a.app/bin:/usr/local/opt/ruby/bin:/usr/local/share/python3:/usr/local/share/python:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/share/npm/bin:/Applications/MATLAB_R2013a.app/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 
@@ -60,3 +60,4 @@ function cdl { cd $US1; ls;}
 alias desk='cd ~/Desktop'
 
 export TERM=xterm-256color
+export CVSROOT=/Users/jeremybi/cvsroot
