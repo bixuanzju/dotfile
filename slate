@@ -1,7 +1,10 @@
 config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
 config windowHintsShowIcons true
 config windowHintsIgnoreHiddenWindows false
 config windowHintsSpread true
+config windowHintsBackgroundColor "50;53;58;0.4"
 
 # Abstract positions
 alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
@@ -11,16 +14,33 @@ alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
 alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
 alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
 alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+alias tophalf corner top-left resize:screenSizeX;screenSizeY/2
+alias bottomhalf corner bottom-right resize:screenSizeX;screenSizeY/2
 
-bind esc:cmd hint ASDFGHJKLQWERTYUIOPCVBN
+bind esc:cmd hint LKJHGFDSAPOIUYTREWQ
+
+# ======================================
+# The HYPER key
+# ======================================
+ 
+alias hyper ctrl;alt;cmd
 
 bind j:alt;cmd ${bottomleft}
 bind l:alt;cmd ${bottomright}
 bind j:ctrl;cmd ${lefthalf}
 bind i:ctrl;cmd: ${full}
 bind l:ctrl;cmd ${righthalf}
-bind j:ctrl;alt;cmd ${topleft}
-bind l:ctrl;alt;cmd ${topright}
+bind j:${hyper} ${topleft}
+bind l:${hyper} ${topright}
+bind i:${hyper} ${tophalf}
+bind k:${hyper} ${bottomhalf}
 
-# bind pad8 push top bar-resize:screenSizeY/2
-# bind pad2 push bottom bar-resize:screenSizeY/2
+layout 1monitor 'iTerm':REPEAT ${bottomright}
+layout 1monitor 'Emacs':REPEAT ${righthalf}
+layout 1monitor 'Google Chrome':REPEAT ${full}
+layout 1monitor 'Finder':REPEAT ${topright}
+layout 1monitor 'iTunes':REPEAT ${full}
+
+bind o:${hyper} layout 1monitor
+bind h:${hyper} toggle 'iTerm','Google Chrome','Emacs'
+bind m:${hyper} relaunch
