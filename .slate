@@ -35,10 +35,10 @@ bind l:${hyper} ${topright}
 bind i:${hyper} ${tophalf}
 bind k:${hyper} ${bottomhalf}
 
-layout 1monitor 'iTerm':REPEAT ${bottomright}
+layout 1monitor 'iTerm':REPEAT ${topright}
 layout 1monitor 'Emacs':REPEAT ${righthalf}
 layout 1monitor 'Google Chrome':REPEAT ${full}
-layout 1monitor 'Finder':REPEAT ${topright}
+layout 1monitor 'Finder':REPEAT ${topleft}
 layout 1monitor 'iTunes':REPEAT ${full}
 
 bind o:${hyper} layout 1monitor

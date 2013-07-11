@@ -45,7 +45,6 @@ export PATH="$HOME/Library/Haskell/bin:$HOME/scripts:$PATH"
 export PATH="/usr/local/share/npm/bin:/Applications/MATLAB_R2013a.app/bin:/usr/local/opt/ruby/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 autoload -U compinit && compinit
 
@@ -56,8 +55,19 @@ fi
 
 alias ls='ls $LS_OPTIONS -hF'
 alias ll='ls $LS_OPTIONS -lhF'
+
+export CVSROOT=/Users/jeremybi/cvsroot
+
+# Colorize terminal
+export TERM=xterm-256color
 function cdl { cd $US1; ls;}
 alias desk='cd ~/Desktop'
 
-export TERM=xterm-256color
-export CVSROOT=/Users/jeremybi/cvsroot
+# Nicer history
+export HISTSIZE=100000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+
+# By default, zsh considers many characters part of a word (e.g., _ and -).
+# Narrow that down to allow easier skipping through words via M-f and M-b.
+export WORDCHARS='*?[]~&;!$%^<>'
