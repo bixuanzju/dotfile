@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -76,7 +76,6 @@ alias ll='ls $LS_OPTIONS -lhF'
 export CVSROOT=/Users/jeremybi/cvsroot
 
 # Colorize terminal
-# export TERM=xterm-256color
 function cdl { cd $US1; ls;}
 alias desk='cd ~/Desktop'
 
@@ -91,3 +90,5 @@ export WORDCHARS='*?[]~&;!$%^<>'
 
 source /Users/jeremybi/zaw/zaw.zsh
 source /usr/local/bin/virtualenvwrapper.sh
+
+. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
