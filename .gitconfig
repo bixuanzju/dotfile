@@ -1,0 +1,13 @@
+[user]
+	name		= Jeremy Bi
+	email		= xbi@zju.edu.cn
+[color]
+	ui		= true
+[credential]
+	helper		= osxkeychain
+[push]
+	default		= tracking
+[merge]
+	tool		= vimdiff
+[diff]
+	tool		= vimdiff
