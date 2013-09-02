@@ -15,7 +15,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -47,6 +47,7 @@ alias e="/usr/local/bin/emacsclient -c -n"
 alias ec="/usr/local/bin/emacsclient -t"
 alias bzlg="bzr log -l"
 alias tnew="tmux new -s"
+alias vi=vim
 # alias ktcm="kill `lsof -i TCP:8080 | awk '/LISTEN/{print $2}'`"
 
 # Colorize terminal
@@ -86,4 +87,4 @@ export WORDCHARS='*?[]~&;!$%^<>'
 
 source /usr/local/bin/virtualenvwrapper.sh
 
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
