@@ -5,6 +5,7 @@ compinit
 # Add path
 export PATH=/usr/local/bin:/usr/texbin:/Applications/Racket/bin:/usr/local/sbin:${PATH}
 export PATH=/usr/local/share/npm/bin:/Applications/MATLAB_R2013a.app/bin:$HOME/Library/Haskell/bin:$HOME/scripts:${PATH}
+
 # export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 # export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
 
@@ -35,7 +36,7 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(autojump cp brew svn git github osx)
+plugins=(autojump cp brew git github osx)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,11 +44,13 @@ source $ZSH/oh-my-zsh.sh
 alias rm="rm -i"
 alias pg_ctl="pg_ctl -D /Users/jeremybi/postgres -l logfile"
 # alias emu="wine ~/Dropbox/git/compiler/junco/ASM_Emulator/ASMEmu.exe"
-alias e="/usr/local/bin/emacsclient -c -n"
-alias ec="/usr/local/bin/emacsclient -t"
+alias ec="/usr/local/bin/emacsclient -c -n"
 alias bzlg="bzr log -l"
-alias tnew="tmux new -s"
 alias vi=vim
+# tmux
+alias tnew="tmux new -s"
+alias tma="tmux attach"
+alias tml="tmux list-window"
 # alias ktcm="kill `lsof -i TCP:8080 | awk '/LISTEN/{print $2}'`"
 
 # Colorize terminal
@@ -55,9 +58,6 @@ alias vi=vim
 #     export LS_OPTIONS='--color=auto'
 #     eval `dircolors ~/.dir_colors`
 # fi
-
-# alias ls='ls $LS_OPTIONS -hF'
-# alias ll='ls $LS_OPTIONS -lhF'
 
 # Nicer history
 export HISTSIZE=100000
@@ -87,4 +87,28 @@ export WORDCHARS='*?[]~&;!$%^<>'
 
 source /usr/local/bin/virtualenvwrapper.sh
 
-# . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# Sets reasonable OS X defaults.
+
+# Disable press-and-hold for keys in favor of key repeat.
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Always open everything in Finder's list view. This is important.
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+
+# Show the ~/Library folder.
+chflags nohidden ~/Library
+
+# Run the screensaver if we're in the bottom-left hot corner.
+defaults write com.apple.dock wvous-bl-corner -int 5
+defaults write com.apple.dock wvous-bl-modifier -int 0
+
+# grc overides for ls
+#   Made possible through contributions from generous benefactors like
+#   `brew install coreutils`
+if $(gls &>/dev/null)
+then
+  alias ls="gls -F --color"
+  alias l="gls -lAh --color"
+  alias ll="gls -l --color"
+  alias la='gls -A --color'
+fi
