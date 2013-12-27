@@ -16,31 +16,28 @@ alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
 alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
 alias tophalf corner top-left resize:screenSizeX;screenSizeY/2
 alias bottomhalf corner bottom-right resize:screenSizeX;screenSizeY/2
+alias rightmost push right bar-resize:6*screenSizeX/10
 
 bind esc:cmd hint LKJHGFDSAPOIUYTREWQ
 
 # ======================================
 # The HYPER key
 # ======================================
- 
-alias hyper ctrl;alt;cmd
 
-bind j:alt;cmd ${bottomleft}
-bind l:alt;cmd ${bottomright}
-bind j:ctrl;cmd ${lefthalf}
-bind i:ctrl;cmd: ${full}
-bind l:ctrl;cmd ${righthalf}
+alias hyper ctrl,shift,cmd
+
+bind j:ctrl,cmd ${lefthalf}
+bind l:ctrl,cmd ${righthalf}
+bind i:ctrl,cmd ${full}
 bind j:${hyper} ${topleft}
 bind l:${hyper} ${topright}
 bind i:${hyper} ${tophalf}
 bind k:${hyper} ${bottomhalf}
 
-layout 1monitor 'iTerm':REPEAT ${topright}
-layout 1monitor 'Emacs':REPEAT ${righthalf}
+layout 1monitor 'iTerm':REPEAT ${rightmost}
+layout 1monitor 'Emacs':REPEAT ${rightmost}
 layout 1monitor 'Google Chrome':REPEAT ${full}
 layout 1monitor 'Finder':REPEAT ${topleft}
-layout 1monitor 'iTunes':REPEAT ${full}
 
 bind o:${hyper} layout 1monitor
-bind h:${hyper} toggle 'iTerm','Google Chrome','Emacs'
 bind m:${hyper} relaunch
