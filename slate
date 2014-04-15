@@ -26,9 +26,9 @@ bind esc:cmd hint LKJHGFDSAPOIUYTREWQ
 
 alias hyper ctrl,shift,cmd
 
-bind j:ctrl,cmd ${lefthalf}
-bind l:ctrl,cmd ${righthalf}
-bind i:ctrl,cmd ${full}
+bind j:alt,cmd ${lefthalf}
+bind l:alt,cmd ${righthalf}
+bind i:alt,cmd ${full}
 bind j:${hyper} ${topleft}
 bind l:${hyper} ${topright}
 bind i:${hyper} ${tophalf}

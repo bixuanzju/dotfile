@@ -1,20 +1,35 @@
 [user]
 	name		= Jeremy Bi
 	email		= bixuanxbi@gmail.com
+
+[core]
+	pager		= less
+	editor		= vim
+	quotepath	= false
+	excludesfile	= ~/.gitignore
+	
 [color]
-	ui		= true
+	branch		= auto
+	diff		= auto
+	interactive	= auto
+	status		= auto
+	ui		= auto
+	
 [credential]
 	helper		= osxkeychain
+	
 [push]
 	default		= tracking
+	
 [merge]
-	tool = diffmerge
+	tool		= diffmerge
+	
 [diff]
-	tool = diffmerge
+	tool		= diffmerge
+	
 [difftool "diffmerge"]
-	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+	cmd		= diffmerge \"$LOCAL\" \"$REMOTE\"
+	
 [mergetool "diffmerge"]
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-	trustExitCode = true
-[core]
-	editor = vim
+	cmd		= "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode	= true

@@ -1,0 +1,13 @@
+alias ec='emacsclient -c -n'
+alias ems='emacs --daemon'
+alias bzl='bzr log -l'
+
+# export http_proxy='http://theironislands.f.getqujing.net:30753'
+# export https_proxy='http://theironislands.f.getqujing.net:30753'
+
+# export SPARK_HOME=$HOME/spark-0.9.1-incubating-bin-hadoop1
+# export AWS_ACCESS_KEY_ID=AKIAI2LLWL5SXB6MYJMA
+# export AWS_SECRET_ACCESS_KEY=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
+
+source ~/.cask/etc/cask_completion.zsh
+source ~/plugins/k/k.sh
