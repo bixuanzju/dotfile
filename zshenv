@@ -90,6 +90,7 @@ path_candidates=(
     ~/.cask/bin
     /Applications/MATLAB_R2013a.app/bin
     /Applications/Racket/bin
+    /Users/jeremybi/ghc78/bin
 )
 
 for path_candidate in $path_candidates; do

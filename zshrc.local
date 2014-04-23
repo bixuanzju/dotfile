@@ -4,6 +4,9 @@ alias bzl='bzr log -l'
 
 # export http_proxy='http://theironislands.f.getqujing.net:30753'
 # export https_proxy='http://theironislands.f.getqujing.net:30753'
+alias gcc='/usr/local/bin/gcc-4.8'
+alias cc='/usr/local/bin/gcc-4.8'
+alias g++='/usr/local/bin/g++-4.8'
 
 source ~/.cask/etc/cask_completion.zsh
 source ~/plugins/k/k.sh
