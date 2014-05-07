@@ -10,3 +10,18 @@ alias g++='/usr/local/bin/g++-4.8'
 
 source ~/.cask/etc/cask_completion.zsh
 source ~/plugins/k/k.sh
+
+export GRADLE_HOME=/Users/jeremybi/bin
+
+function cabal_sandbox_info() {
+    cabal_files=(*.cabal(N))
+    if [ $#cabal_files -gt 0 ]; then
+        if [ -f cabal.sandbox.config ]; then
+            echo "%{$fg[green]%}sandboxed%{$reset_color%}"
+        else
+            echo "%{$fg[red]%}not sandboxed%{$reset_color%}"
+        fi
+    fi
+}
+ 
+RPROMPT="\$(cabal_sandbox_info) $RPROMPT"

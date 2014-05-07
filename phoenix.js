@@ -13,41 +13,41 @@
 //    twitter.com/hmans
 //
 
-var mash = ["cmd", "shift", "ctrl"];
+var mash = ["cmd", "alt", "ctrl"];
 var mashAlt = ['alt', 'shift', 'ctrl'];
 var padding = 2;
 
 api.bind('j', mashAlt, leftOneMonitor);
 api.bind('l', mashAlt, rightOneMonitor);
 
-api.bind('i', mash, function() {
-    Window.focusedWindow().toFullScreen();
+api.bind('space', mash, function() {
+  Window.focusedWindow().toFullScreen();
 });
 
 api.bind('up', mash, function() {
-    Window.focusedWindow().toTopHalf();
+  Window.focusedWindow().toTopHalf();
 });
 
 api.bind('down', mash, function() {
-    Window.focusedWindow().toBottomHalf();
+  Window.focusedWindow().toBottomHalf();
 });
 
-api.bind('j', mash, function() {
-    Window.focusedWindow().toLeftHalf();
+api.bind('left', mash, function() {
+  Window.focusedWindow().toLeftHalf();
 });
 
-api.bind('l', mash, function() {
-    Window.focusedWindow().toRightHalf();
+api.bind('right', mash, function() {
+  Window.focusedWindow().toRightHalf();
 });
 
-api.bind('o', mash, function() {
+api.bind('up', mashAlt, function() {
     api.alert("Layout 1", 0.5);
     forApp("Safari", function(win) {
         win.toLeftHalf();
     });
 
     forApp("iTerm", function(win) {
-        win.toLeftHalf();
+        win.toGrid(0.4, 0, 0.6, 1);
     });
 
     forApp("Emacs", function(win) {
@@ -155,7 +155,7 @@ App.prototype.firstWindow = function() {
 function forApp(name, f) {
     var app = App.byTitle(name);
 
-    if (app) {
+    if (app.title) {
         _.each(app.visibleWindows(), f);
     }
 };
