@@ -13,7 +13,7 @@
 //    twitter.com/hmans
 //
 
-var mash = ["cmd", "alt", "ctrl"];
+var mash = ["cmd", "shift", "ctrl"];
 var mashAlt = ['alt', 'shift', 'ctrl'];
 var padding = 2;
 
@@ -40,7 +40,7 @@ api.bind('right', mash, function() {
   Window.focusedWindow().toRightHalf();
 });
 
-api.bind('up', mashAlt, function() {
+api.bind('space', mashAlt, function() {
     api.alert("Layout 1", 0.5);
     forApp("Safari", function(win) {
         win.toLeftHalf();

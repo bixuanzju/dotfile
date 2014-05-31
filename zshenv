@@ -91,6 +91,7 @@ path_candidates=(
     /Applications/MATLAB_R2013a.app/bin
     /Applications/Racket/bin
     /Users/jeremybi/ghc78/bin
+    /Users/jeremybi/spark-1.0.0-bin-hadoop1/bin
 )
 
 for path_candidate in $path_candidates; do
