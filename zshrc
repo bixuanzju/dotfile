@@ -7,10 +7,6 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="eastwood"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -26,8 +22,8 @@ ZSH_THEME="eastwood"
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to disable command auto-correction.
-# DISABLE_CORRECTION="true"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -48,13 +44,16 @@ ZSH_THEME="eastwood"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx brew cabal fasd lein pip sbt virtualenvwrapper)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git brew fasd cabal lein mercurial osx sbt)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/share/man:/usr/local/pkg/perl/man:/usr/dt/man:/usr/openwin/man:/usr/sfw/man:/Users/jeremybi/local/man:/Users/jeremybi/local/share/man:/Users/jeremybi/.cabal/share/man"
+
+export PATH="/Users/jeremybi/.nix-profile/bin:/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/Users/jeremybi/Applications/Racket v6.1/bin:/usr/local/Cellar/ruby/2.1.2_2/bin:/usr/local/Cellar/ruby/2.1.2_3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -71,6 +70,15 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # local settings override global ones
 [[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local

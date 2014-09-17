@@ -52,6 +52,8 @@ unset path_file
 path=()
 
 path_candidates=(
+    ~/.nix-profile/bin
+    ~/Library/Haskell/bin
     /opt/gums/bin
     /home/eng/config/tools/bin
     /home/eng/bin
@@ -86,17 +88,14 @@ path_candidates=(
     /opt/X11/bin
     /usr/X11R6/bin
     ~/tools
-    ~/.cabal/bin
     ~/.cask/bin
-    /Applications/MATLAB_R2013a.app/bin
-    /Applications/Racket/bin
-    /Users/jeremybi/ghc78/bin
-    /Users/jeremybi/spark-1.0.0-bin-hadoop1/bin
+    ~/Applications/Racket\ v6.1/bin
 )
 
 for path_candidate in $path_candidates; do
     [[ -d $path_candidate ]] && path+=$path_candidate
 done
+
 
 # homebrew
 if [[ -d /usr/local/Cellar/ruby ]]; then
