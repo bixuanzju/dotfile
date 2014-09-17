@@ -3,6 +3,7 @@ local window = require "mjolnir.window"
 local hotkey = require "mjolnir.hotkey"
 local fnutils = require "mjolnir.fnutils"
 local geometry = require "mjolnir.geometry"
+local alert = require "mjolnir.alert"
 
 local grid = {}
 grid.BORDER = 2
@@ -13,6 +14,7 @@ function toFullscreen()
    end
 
    local screenframe = getScreenframe(win)
+   alert.show("Fullscreen entered!")
    win:setframe(screenframe)
 end
 
