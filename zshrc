@@ -51,9 +51,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/share/man:/usr/local/pkg/perl/man:/usr/dt/man:/usr/openwin/man:/usr/sfw/man:/Users/jeremybi/local/man:/Users/jeremybi/local/share/man:/Users/jeremybi/.cabal/share/man"
+export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/share/man:/usr/local/pkg/perl/man:/usr/dt/man:/usr/openwin/man:/usr/sfw/man:/Users/jeremybi/local/man:/Users/jeremybi/local/share/man:/Users/jeremybi/.cabal/share/man:/usr/local/opt/coreutils/libexec/gnuman"
 
-export PATH="/Users/jeremybi/.nix-profile/bin:/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/Users/jeremybi/Applications/Racket v6.1/bin:/usr/local/Cellar/ruby/2.1.2_2/bin:/usr/local/Cellar/ruby/2.1.2_3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
+export PATH="/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/Users/jeremybi/Applications/Racket v6.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

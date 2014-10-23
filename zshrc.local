@@ -4,6 +4,6 @@ alias bzl='bzr log -l'
 alias rm='trash'
 alias hgg='hg log | less'
 
-source ~/.cask/etc/cask_completion.zsh
-
+source /usr/local/share/zsh/site-functions/cask_completion.zsh
 export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=~/bin/bin:$PATH
