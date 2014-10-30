@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="eastwood"
+ZSH_THEME="pygmalion"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,10 +51,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/share/man:/usr/local/pkg/perl/man:/usr/dt/man:/usr/openwin/man:/usr/sfw/man:/Users/jeremybi/local/man:/Users/jeremybi/local/share/man:/Users/jeremybi/.cabal/share/man:/usr/local/opt/coreutils/libexec/gnuman"
-
-export PATH="/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/Users/jeremybi/Applications/Racket v6.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -80,5 +76,8 @@ export PATH="/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias zshconfig="vi ~/.zshrc"
+alias envconfig="vi ~/dotfile/env.sh"
+
 # local settings override global ones
-[[ -s $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+[[ -s $HOME/dotfile/env.sh ]] && source $HOME/dotfile/env.sh
