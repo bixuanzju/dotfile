@@ -88,14 +88,12 @@ hotkey.bind(mashshift, 'H', toLefthalf)
 hotkey.bind(mashshift, 'L', toRighthalf)
 hotkey.bind(mashshift, 'J', toMostLeft)
 hotkey.bind(mashshift, 'K', toMostRight)
-hotkey.bind(mashshift, 'N', spotify.next)
 
 -- For controlling Spotify
 hotkey.bind(mashshift, 'S', spotify.displayCurrentTrack)
 hotkey.bind(mashshift, 'P', spotify.pause)
+hotkey.bind(mashshift, 'N', spotify.next)
 hotkey.bind(mashshift, 'M', spotify.previous)
-
-
 
 -- Caffeinate
 

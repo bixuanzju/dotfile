@@ -6,8 +6,6 @@ export PATH="/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/
 
 alias ec='emacsclient -c -n'
 alias ems='emacs --daemon'
-alias bzl='bzr log -l'
-alias hgg='hg log | less'
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
@@ -25,3 +23,11 @@ export LESS='-F -g -i -M -R -w -X -x 4 -z-4'
 if (( $+commands[lesspipe.sh] )); then
     export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
 fi
+
+# Add GHC 7.8.3 to the PATH, via http://ghcformacosx.github.io/
+# export GHC_DOT_APP="/Applications/ghc-7.8.3.app"
+# if [ -d "$GHC_DOT_APP" ]; then
+#     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+# fi
+
+export PATH="/Users/jeremybi/.cabal/bin:${PATH}"
