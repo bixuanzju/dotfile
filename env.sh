@@ -2,7 +2,7 @@
 
 export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/share/man:/usr/local/pkg/perl/man:/usr/dt/man:/usr/openwin/man:/usr/sfw/man:/Users/jeremybi/local/man:/Users/jeremybi/local/share/man:/Users/jeremybi/.cabal/share/man:/usr/local/opt/coreutils/libexec/gnuman"
 
-export PATH="/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/Users/jeremybi/Applications/Racket v6.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
+export PATH="/Users/jeremybi/Library/Haskell/bin:/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/Applications/Racket v6.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
 
 alias ec='emacsclient -c -n'
 alias ems='emacs --daemon'
@@ -31,3 +31,7 @@ fi
 # fi
 
 export PATH="/Users/jeremybi/.cabal/bin:${PATH}"
+
+
+# OPAM configuration
+. /Users/jeremybi/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
