@@ -19,7 +19,7 @@
 	helper		= osxkeychain
 	
 [push]
-	default		= tracking
+	default         = simple
 	
 [merge]
 	tool		= diffmerge

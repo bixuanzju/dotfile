@@ -45,7 +45,7 @@ ZSH_THEME="pygmalion"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew fasd cabal lein mercurial osx sbt)
+plugins=(git brew fasd cabal lein mercurial osx sbt brew-cask emacs)
 
 source $ZSH/oh-my-zsh.sh
 
