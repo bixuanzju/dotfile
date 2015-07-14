@@ -42,7 +42,7 @@ if [ -d "$GHC_DOT_APP" ]; then
     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
-export PATH="/Users/jeremybi/Projects/ghc-mod/.cabal-sandbox/bin:$PATH"
+export PATH="/Users/jeremybi/.local/bin/:$PATH"
 
 if [ -e /Users/jeremybi/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jeremybi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
