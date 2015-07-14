@@ -46,15 +46,17 @@ local mashshift = {"cmd", "ctrl", "shift"}
 
 grid.MARGINX = 0
 grid.MARGINY = 0
-grid.GRIDWIDTH = 2
-grid.GRIDHEIGHT = 2
+grid.GRIDWIDTH = 8
+grid.GRIDHEIGHT = 8
 
-local goleft = {x = 0, y = 0, w = 1, h = 2}
-local goright = {x = 1, y = 0, w = 1, h = 2}
+local goleft = {x = 0, y = 0, w = 4, h = 8}
+local goright = {x = 4, y = 0, w = 4, h = 8}
 
 hotkey.bind(mashshift, 'I', grid.maximizeWindow)
 hotkey.bind(mashshift, 'H', gridset(goleft))
 hotkey.bind(mashshift, 'L', gridset(goright))
+hotkey.bind(mashshift, 'J', grid.resizeWindowThinner)
+hotkey.bind(mashshift, 'K', grid.resizeWindowWider)
 hotkey.bind(mashshift, 'N', grid.pushWindowNextScreen)
 
 
@@ -73,7 +75,8 @@ function caffeineToggle()
 end
 
 if caffeine then
-   setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
+    caffeine:setClickCallback(caffeineToggle)
+    setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
 end
 
 hotkey.bind(mash, 'S', caffeineToggle)
@@ -110,5 +113,5 @@ hotkey.bind(mashshift, "M", mouseHighlight)
 hs.hints.hintChars = {"A", "S", "D", "F", "G", "H", "J","K", "L"}
 hs.hints.showTitleThresh = 3
 
-hotkey.bind(mashshift, "J", hints.windowHints)
-hs.hotkey.bind(mashshift, "K", function() hints.windowHints(window.focusedWindow():application():allWindows()) end)
+hotkey.bind(mash, "J", hints.windowHints)
+hs.hotkey.bind(mash, "K", function() hints.windowHints(window.focusedWindow():application():allWindows()) end)
