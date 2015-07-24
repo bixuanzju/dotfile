@@ -48,5 +48,5 @@ if [ -e /Users/jeremybi/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jerem
 
 export NIX_PATH=nixpkgs=/Users/jeremybi/Projects/nixpkgs
 
-alias rm='safe-rm'
+alias rm='trash'
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
