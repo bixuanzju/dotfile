@@ -2,7 +2,7 @@
 
 export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/share/man:/usr/local/pkg/perl/man:/usr/dt/man:/usr/openwin/man:/usr/sfw/man:/Users/jeremybi/local/man:/Users/jeremybi/local/share/man:/Users/jeremybi/.cabal/share/man:/usr/local/opt/coreutils/libexec/gnuman"
 
-export PATH="/Users/jeremybi/.local/bin:/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
+export PATH="/Users/jeremybi/bin:/usr/local/share/npm/bin:/usr/X11R6/bin:/Users/jeremybi/.cask/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
 
 alias ec='emacsclient -c -n'
 alias ems='emacs --daemon'
@@ -30,19 +30,11 @@ if (( $+commands[lesspipe.sh] )); then
     export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
 fi
 
-# Add GHC 7.8.4 to the PATH, via https://ghcformacosx.github.io/
-# export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
-# if [ -d "$GHC_DOT_APP" ]; then
-#     export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
-# fi
-
-# Add GHC 7.8.4 to the PATH, via https://ghcformacosx.github.io/
-export GHC_DOT_APP="/Applications/ghc-7.8.4.app"
+# Add GHC 7.10.2 to the PATH, via https://ghcformacosx.github.io/
+export GHC_DOT_APP="/Applications/ghc-7.10.2.app"
 if [ -d "$GHC_DOT_APP" ]; then
-    export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+    export PATH="${HOME}/.local/bin:${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
-
-export PATH="/Users/jeremybi/.local/bin/:$PATH"
 
 if [ -e /Users/jeremybi/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jeremybi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
