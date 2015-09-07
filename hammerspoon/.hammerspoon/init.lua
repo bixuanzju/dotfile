@@ -51,12 +51,20 @@ grid.GRIDHEIGHT = 8
 
 local goleft = {x = 0, y = 0, w = 4, h = 8}
 local goright = {x = 4, y = 0, w = 4, h = 8}
+local goUpperRight = {x = 4, y = 0, w = 4, h = 4}
+local goUpperLeft = {x = 0, y = 0, w = 4, h = 4}
+local goDownLeft = {x = 0, y = 4, w = 4, h = 4}
+local goDownRight = {x = 4, y = 4, w = 4, h = 4}
 
 hotkey.bind(mashshift, 'I', grid.maximizeWindow)
 hotkey.bind(mashshift, 'H', gridset(goleft))
 hotkey.bind(mashshift, 'L', gridset(goright))
-hotkey.bind(mashshift, 'J', grid.resizeWindowThinner)
-hotkey.bind(mashshift, 'K', grid.resizeWindowWider)
+hotkey.bind(mashshift, 'O', gridset(goUpperRight))
+hotkey.bind(mashshift, 'U', gridset(goUpperLeft))
+hotkey.bind(mashshift, 'K', gridset(goDownRight))
+hotkey.bind(mashshift, 'J', gridset(goDownLeft))
+-- hotkey.bind(mashshift, 'J', grid.resizeWindowThinner)
+-- hotkey.bind(mashshift, 'K', grid.resizeWindowWider)
 hotkey.bind(mashshift, 'N', grid.pushWindowNextScreen)
 
 
