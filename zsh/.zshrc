@@ -76,8 +76,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias zshconfig="vi ~/.zshrc"
-alias envconfig="vi ~/dotfile/env.sh"
-
 # local settings override global ones
 [[ -s $HOME/dotfile/env.sh ]] && source $HOME/dotfile/env.sh
