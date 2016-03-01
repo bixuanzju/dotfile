@@ -36,7 +36,7 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 export PATH="${HOME}/.local/bin:${PATH}"
 
-eval "$(stack --bash-completion-script "$(which stack)")"
+eval "$(stack --bash-completion-script stack)"
 
 source <(f2j --bash-completion-script `which f2j`)
 
