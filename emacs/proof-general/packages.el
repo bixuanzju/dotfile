@@ -31,17 +31,27 @@
     (progn
       (setq proof-splash-seen t)
 
-       ;; Hybrid mode is by far the best.
-       (setq proof-three-window-mode-policy 'hybrid)
+       (setq proof-three-window-mode-policy 'smart)
 
        ;; I don't know who wants to evaluate comments
        ;; one-by-one, but I don't.
        (setq proof-script-fly-past-comments t)
 
+       ;; prefix
+       (spacemacs/declare-prefix-for-mode 'coq-mode "mh" "coq/documentation")
+       (spacemacs/declare-prefix-for-mode 'coq-mode "mg" "coq/navigation")
+       (spacemacs/declare-prefix-for-mode 'coq-mode "ms" "coq/process")
+
+       ;; key bindings
        (spacemacs/set-leader-keys-for-major-mode 'coq-mode
-         "n" 'proof-assert-next-command-interactive
-         "p" 'proof-undo-last-successful-command
-         "c" 'coq-Check))))
+         "g." 'proof-goto-end-of-locked
+
+         "sn" 'proof-assert-next-command-interactive
+         "su" 'proof-undo-last-successful-command
+         "sN" 'proof-goto-point
+
+         "ht" 'proof-query-identifier)
+       )))
 
 
 ;; (defun proof-general/post-init-company ()
