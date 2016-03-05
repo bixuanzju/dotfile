@@ -31,7 +31,7 @@ values."
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
-     ;; markdown
+     markdown
      org
      (shell :variables
             shell-default-height 30
