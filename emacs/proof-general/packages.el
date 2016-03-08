@@ -13,14 +13,18 @@
 
 ;;; Code:
 
-;; TODO: Make company-ghc work
 (setq proof-general-packages
       '(
         (proof-general :location local)
-        ;; company
-        ;; company-coq
+        company-coq
         ))
 
+(when (configuration-layer/layer-usedp 'auto-completion)
+  (defun proof-general/init-company-coq ()
+    (use-package company-ghc
+      :defer t
+      :if (configuration-layer/package-usedp 'company)
+      :init (add-hook 'coq-mode-hook #'company-coq-mode))))
 
 (defun proof-general/init-proof-general ()
   (use-package proof-site
@@ -52,16 +56,5 @@
 
          "ht" 'proof-query-identifier)
        )))
-
-
-;; (defun proof-general/post-init-company ()
-;;   (spacemacs|add-company-hook coq-mode))
-
-;; (when (configuration-layer/layer-usedp 'auto-completion)
-;;   (defun proof-general/init-company-coq ()
-;;     (use-package company-coq
-;;       :if (configuration-layer/package-usedp 'company)
-;;       :defer t
-;;       :init (push 'company-coq-mode company-backends-coq-mode))))
 
 ;;; packages.el ends here
