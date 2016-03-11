@@ -44,19 +44,19 @@
       (setq proof-script-fly-past-comments t)
 
       ;; prefix
-      (spacemacs/declare-prefix-for-mode 'coq-mode "mh" "coq/documentation")
-      (spacemacs/declare-prefix-for-mode 'coq-mode "mg" "coq/navigation")
-      (spacemacs/declare-prefix-for-mode 'coq-mode "ms" "coq/process")
+      ;; (spacemacs/declare-prefix-for-mode 'coq-mode "mh" "coq/documentation")
+      ;; (spacemacs/declare-prefix-for-mode 'coq-mode "mg" "coq/navigation")
+      ;; (spacemacs/declare-prefix-for-mode 'coq-mode "ms" "coq/process")
 
       ;; key bindings
       (spacemacs/set-leader-keys-for-major-mode 'coq-mode
-        "g." 'proof-goto-end-of-locked
+        "." 'proof-goto-end-of-locked
 
-        "sn" 'proof-assert-next-command-interactive
-        "su" 'proof-undo-last-successful-command
-        "sN" 'proof-goto-point
+        "]" 'proof-assert-next-command-interactive
+        "[" 'proof-undo-last-successful-command
+        "n" 'proof-goto-point
 
-        "ht" 'proof-query-identifier)
+        "t" 'proof-query-identifier)
       )))
 
 ;;; packages.el ends here
