@@ -44,7 +44,7 @@ values."
      idris
      haskell
      latex
-     evil-snipe
+     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
 
      ;; private layer
@@ -79,7 +79,7 @@ values."
    ;; (default t)
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
-   dotspacemacs-elpa-timeout 5
+   dotspacemacs-elpa-timeout 10
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. (default t)
    dotspacemacs-check-for-update t
@@ -170,8 +170,6 @@ values."
    dotspacemacs-auto-save-file-location 'cache
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
-   ;; If non nil then `ido' replaces `helm' for some commands.
-   dotspacemacs-use-ido nil
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
