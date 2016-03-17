@@ -19,9 +19,6 @@ export LESS='-F -g -i -M -R -w -X -x 4 -z-4'
 # OPAM configuration
 . /Users/jeremybi/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-export LC_ALL="en_US.UTF-8"
-
-
 # Set the Less input preprocessor.
 if (( $+commands[lesspipe.sh] )); then
     export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
@@ -39,5 +36,3 @@ export PATH="${HOME}/.local/bin:${PATH}"
 eval "$(stack --bash-completion-script stack)"
 
 source <(f2j --bash-completion-script `which f2j`)
-
-alias emc="/usr/local/Cellar/emacs-mac/emacs-24.5-z-mac-5.13/Emacs.app/Contents/MacOS/Emacs &"
