@@ -280,11 +280,15 @@ you should place you code here."
 
   (spacemacs/set-leader-keys
     "oa" 'org-agenda-list
-    "os" 'org-capture)
+    "os" 'org-capture
+    "od" 'org-todo-list)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org-mode agenda options                                                ;;
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;;open agenda in current window
+  (setq org-agenda-window-setup (quote current-window))
 
   ;;set priority range from A to C with default A
   (setq org-highest-priority ?A)
@@ -317,7 +321,9 @@ you should place you code here."
 
   (setq org-capture-templates
         '(("t" "todo" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
-           "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")))
+           "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
+          ("n" "task" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
+           "* TODO %?")))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
