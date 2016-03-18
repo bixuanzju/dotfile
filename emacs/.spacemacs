@@ -310,11 +310,24 @@ you should place you code here."
   (setq org-agenda-todo-ignore-deadlines (quote all))
   (setq org-agenda-todo-ignore-scheduled (quote all))
 
-  ;;sort tasks in order of when they are due and then by priority
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)")
+                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
 
+  (setq org-todo-keyword-faces
+        (quote (("TODO" :foreground "yellow" :weight bold)
+                ("STARTED" :foreground "light blue" :weight bold)
+                ("DONE" :foreground "forest green" :weight bold)
+                ("WAITING" :foreground "orange" :weight bold)
+                ("CANCELLED" :foreground "forest green" :weight bold))))
+
+  ;; Change task state to STARTED when clocking in
+  (setq org-clock-in-switch-to-state "STARTED")
+
+  ;;sort tasks in order of when they are due and then by priority
   (setq org-agenda-sorting-strategy
         (quote
-         ((agenda deadline-up priority-down)
+         ((agenda todo-state-down deadline-up priority-down)
           (todo priority-down category-keep)
           (tags priority-down category-keep)
           (search category-keep))))
