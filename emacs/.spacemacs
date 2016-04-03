@@ -11,9 +11,20 @@ values."
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
+   ;; Lazy installation of layers (i.e. layers are installed only when a file
+   ;; with a supported type is opened). Possible values are `all', `unused'
+   ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+   ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+   ;; lazy install any layer that support lazy installation even the layers
+   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+   ;; installation feature and you have to explicitly list a layer in the
+   ;; variable `dotspacemacs-configuration-layers' to install it.
+   ;; (default 'unused)
+   dotspacemacs-enable-lazy-installation 'unused
+   ;; If non-nil then Spacemacs will ask for confirmation before installing
+   ;; a layer lazily. (default t)
+   dotspacemacs-ask-for-lazy-installation t
    ;; If non-nil layers with lazy install support are lazy installed.
-   ;; (default nil)
-   dotspacemacs-enable-lazy-installation nil
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '("~/dotfile/emacs/mylayers/")
@@ -47,6 +58,7 @@ values."
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
      twitter
+     games
 
      ;; private layer
      proof-general
@@ -78,7 +90,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 10
    ;; If non nil then spacemacs will check for updates at startup
