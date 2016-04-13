@@ -35,7 +35,7 @@
     (progn
       (setq proof-splash-seen t)
 
-      ;; (setq proof-three-window-mode-policy 'smart)
+      (setq proof-three-window-mode-policy 'hybrid)
 
       ;; (setq coq-compile-before-require t)
 
