@@ -124,16 +124,16 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
+   dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light
-                         spacemacs-dark
+                         zenbrun
                          solarized-light
                          solarized-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("PragmataPro"
+   dotspacemacs-default-font '("Source Code Pro"
                                :size 17
                                :weight normal
                                :width normal
@@ -297,6 +297,10 @@ you should place your code here."
     "oa" 'org-agenda-list
     "os" 'org-capture
     "od" 'org-todo-list)
+
+  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
+    "t" 'ghc-show-type
+    "i" 'ghc-insert-template-or-signature)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org-mode agenda options                                                ;;
