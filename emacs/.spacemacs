@@ -193,7 +193,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-transient-state nil
+   dotspacemacs-enable-paste-transient-state t
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -302,63 +302,65 @@ you should place your code here."
     "t" 'ghc-show-type
     "i" 'ghc-insert-template-or-signature)
 
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; org-mode agenda options                                                ;;
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (with-eval-after-load 'org
 
-  ;;open agenda in current window
-  (setq org-agenda-window-setup (quote current-window))
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; org-mode agenda options                                                ;;
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  ;;set priority range from A to C with default A
-  (setq org-highest-priority ?A)
-  (setq org-lowest-priority ?C)
-  (setq org-default-priority ?A)
+    ;; open agenda in current window
+    (setq org-agenda-window-setup (quote current-window))
 
-  ;;set colours for priorities
-  (setq org-priority-faces '((?A . (:foreground "OliveDrab" :weight bold))
-                             (?B . (:foreground "LightSteelBlue"))
-                             (?C . (:foreground "#F0DFAF"))))
-  (setq org-agenda-files '("~/Dropbox/Research/todo.org"))
-  ;;don't show tasks as scheduled if they are already shown as a deadline
-  (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-  ;;don't give awarning colour to tasks with impending deadlines
-  ;;if they are scheduled to be done
-  (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
-  ;;don't show tasks that are scheduled or have deadlines in the
-  ;;normal todo list
-  (setq org-agenda-todo-ignore-deadlines (quote all))
-  (setq org-agenda-todo-ignore-scheduled (quote all))
+    ;;set priority range from A to C with default A
+    (setq org-highest-priority ?A)
+    (setq org-lowest-priority ?C)
+    (setq org-default-priority ?A)
 
-  (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)")
-                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
+    ;;set colours for priorities
+    (setq org-priority-faces '((?A . (:foreground "OliveDrab" :weight bold))
+                               (?B . (:foreground "LightSteelBlue"))
+                               (?C . (:foreground "#F0DFAF"))))
+    (setq org-agenda-files '("~/Dropbox/Research/todo.org"))
+    ;;don't show tasks as scheduled if they are already shown as a deadline
+    (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+    ;;don't give awarning colour to tasks with impending deadlines
+    ;;if they are scheduled to be done
+    (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
+    ;;don't show tasks that are scheduled or have deadlines in the
+    ;;normal todo list
+    (setq org-agenda-todo-ignore-deadlines (quote all))
+    (setq org-agenda-todo-ignore-scheduled (quote all))
 
-  (setq org-todo-keyword-faces
-        (quote (("TODO" :foreground "yellow" :weight bold)
-                ("STARTED" :foreground "light blue" :weight bold)
-                ("DONE" :foreground "forest green" :weight bold)
-                ("WAITING" :foreground "orange" :weight bold)
-                ("CANCELLED" :foreground "forest green" :weight bold))))
+    (setq org-todo-keywords
+          (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)")
+                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)"))))
 
-  ;; Change task state to STARTED when clocking in
-  (setq org-clock-in-switch-to-state "STARTED")
+    (setq org-todo-keyword-faces
+          (quote (("TODO" :foreground "yellow" :weight bold)
+                  ("STARTED" :foreground "light blue" :weight bold)
+                  ("DONE" :foreground "forest green" :weight bold)
+                  ("WAITING" :foreground "orange" :weight bold)
+                  ("CANCELLED" :foreground "forest green" :weight bold))))
 
-  ;; Warn me one week before
-  (setq org-deadline-warning-days 7)
+    ;; Change task state to STARTED when clocking in
+    (setq org-clock-in-switch-to-state "STARTED")
 
-  ;;sort tasks in order of when they are due and then by priority
-  (setq org-agenda-sorting-strategy
-        (quote
-         ((agenda todo-state-down deadline-up priority-down)
-          (todo priority-down category-keep)
-          (tags priority-down category-keep)
-          (search category-keep))))
+    ;; Warn me one week before
+    (setq org-deadline-warning-days 7)
 
-  (setq org-capture-templates
-        '(("t" "todo" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
-           "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
-          ("n" "task" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
-           "* TODO %?")))
+    ;;sort tasks in order of when they are due and then by priority
+    (setq org-agenda-sorting-strategy
+          (quote
+           ((agenda todo-state-down deadline-up priority-down)
+            (todo priority-down category-keep)
+            (tags priority-down category-keep)
+            (search category-keep))))
+
+    (setq org-capture-templates
+          '(("t" "todo" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
+             "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
+            ("n" "task" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
+             "* TODO %?"))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
