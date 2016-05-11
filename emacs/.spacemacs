@@ -124,9 +124,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(zenburn
                          spacemacs-light
-                         zenbrun
+                         spacemacs-dark
                          solarized-light
                          solarized-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -161,6 +161,9 @@ values."
    dotspacemacs-distinguish-gui-tab nil
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ t
+   ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
+   ;; there. (default t)
+   dotspacemacs-retain-visual-state-on-shift t
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
@@ -289,6 +292,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   (setq powerline-default-separator 'alternate)
+  (spaceline-compile)
+
   (setq vc-follow-symlinks t)
 
   (add-to-list 'page-break-lines-modes 'idris-mode)
