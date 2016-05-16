@@ -37,7 +37,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     spacemacs-helm
+     helm
      auto-completion
      emacs-lisp
      (git :variables
@@ -292,9 +292,10 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   (setq powerline-default-separator 'alternate)
-  (spaceline-compile)
 
   (setq vc-follow-symlinks t)
+
+  (setq google-translate-default-target-language "zh-CN")
 
   (add-to-list 'page-break-lines-modes 'idris-mode)
 
