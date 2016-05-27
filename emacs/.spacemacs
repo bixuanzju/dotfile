@@ -53,12 +53,15 @@ values."
      osx
      colors
      idris
-     haskell
+     (haskell :variables haskell-enable-ghc-mod-support nil
+              haskell-enable-hindent-style "johan-tibell")
      (latex :variables latex-build-command "LatexMk")
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
      twitter
      games
+     html
+     yaml
 
      ;; private layer
      proof-general
@@ -304,9 +307,9 @@ you should place your code here."
     "os" 'org-capture
     "od" 'org-todo-list)
 
-  (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-    "t" 'ghc-show-type
-    "i" 'ghc-insert-template-or-signature)
+  ;; (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
+  ;;   "t" 'ghc-show-type
+  ;;   "i" 'ghc-insert-template-or-signature)
 
   (with-eval-after-load 'org
 
@@ -366,8 +369,7 @@ you should place your code here."
           '(("t" "todo" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
              "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
             ("n" "task" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
-             "* TODO %?"))))
-)
+             "* TODO %?")))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
