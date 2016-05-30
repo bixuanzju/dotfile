@@ -55,7 +55,8 @@ values."
      idris
      (haskell :variables haskell-enable-ghc-mod-support nil
               haskell-enable-hindent-style "johan-tibell")
-     (latex :variables latex-build-command "LatexMk")
+     ;; (latex :variables latex-build-command "LatexMk")
+     latex
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
      twitter
@@ -379,6 +380,7 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol t)
+ '(coq-prog-args '("-R" "/Users/jeremybi/scratch/TLC" "TLC"))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
