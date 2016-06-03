@@ -52,16 +52,14 @@ values."
      osx
      colors
      idris
-     (haskell :variables haskell-enable-ghc-mod-support nil
+     (haskell :variables
+              haskell-enable-ghc-mod-support nil
               haskell-enable-hindent-style "johan-tibell")
-     ;; (latex :variables latex-build-command "LatexMk")
      latex
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
      twitter
      games
-     html
-     yaml
 
      ;; private layer
      proof-general
@@ -171,6 +169,9 @@ values."
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift t
+   ;; If non-nil, J and K move lines up and down when in visual mode.
+   ;; (default nil)
+   dotspacemacs-visual-line-move-text t
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global nil
@@ -248,6 +249,9 @@ values."
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
    dotspacemacs-line-numbers nil
+   ;; Code folding method. Possible values are `evil' and `origami'.
+   ;; (default 'evil)
+   dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -382,9 +386,12 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(coq-prog-args (quote ("-R" "/Users/jeremybi/scratch/TLC" "TLC")))
  '(evil-want-Y-yank-to-eol t)
- '(coq-prog-args '("-R" "/Users/jeremybi/scratch/TLC" "TLC"))
- '(paradox-github-token t))
+ '(paradox-github-token t)
+ '(safe-local-variable-values
+   (quote
+    ((coq-prog-args "-emacs-U" "-R" "." "LN" "-R" "/Users/jeremybi/scratch/TLC" "TLC")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
