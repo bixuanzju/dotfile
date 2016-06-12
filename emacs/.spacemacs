@@ -41,7 +41,8 @@ values."
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
-     markdown
+     (markdown :variables
+               markdown-live-preview-engine 'vmd)
      org
      (shell :variables
             shell-default-height 30
@@ -53,8 +54,8 @@ values."
      colors
      idris
      (haskell :variables
-              haskell-enable-ghc-mod-support nil
               haskell-enable-hindent-style "johan-tibell")
+     intero
      latex
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
@@ -386,12 +387,8 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(coq-prog-args (quote ("-R" "/Users/jeremybi/scratch/TLC" "TLC")))
  '(evil-want-Y-yank-to-eol t)
- '(paradox-github-token t)
- '(safe-local-variable-values
-   (quote
-    ((coq-prog-args "-emacs-U" "-R" "." "LN" "-R" "/Users/jeremybi/scratch/TLC" "TLC")))))
+ '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
