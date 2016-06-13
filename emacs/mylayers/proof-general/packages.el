@@ -31,9 +31,10 @@
           "d" 'company-coq-doc
           "o" 'company-coq-occur)))))
 
+;; brew install texi2html
+;; brew install proof-general --HEAD
 (defun proof-general/init-proof-general ()
   (use-package proof-site
-    :load-path "~/PG/generic/"
     :mode ("\\.v\\'" . coq-mode)
     :defer t
     :config
