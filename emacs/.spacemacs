@@ -54,8 +54,9 @@ values."
      colors
      idris
      (haskell :variables
+              ;; haskell-enable-ghc-mod-support nil
+              haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
-     intero
      latex
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml

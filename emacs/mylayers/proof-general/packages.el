@@ -21,9 +21,15 @@
 
 (when (configuration-layer/package-usedp 'company)
   (defun proof-general/init-company-coq ()
-    (use-package company-ghc
+    (use-package company-coq
       :defer t
-      :init (add-hook 'coq-mode-hook #'company-coq-mode))))
+      :init (add-hook 'coq-mode-hook #'company-coq-mode)
+      :config
+      (progn
+        (spacemacs/set-leader-keys-for-major-mode 'coq-mode
+          "g" 'company-coq-jump-to-definition
+          "d" 'company-coq-doc
+          "o" 'company-coq-occur)))))
 
 (defun proof-general/init-proof-general ()
   (use-package proof-site
@@ -53,9 +59,6 @@
 
         "]" 'proof-assert-next-command-interactive
         "[" 'proof-undo-last-successful-command
-        "n" 'proof-goto-point
-
-        "t" 'proof-query-identifier)
-      )))
+        "n" 'proof-goto-point))))
 
 ;;; packages.el ends here
