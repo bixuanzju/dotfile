@@ -37,7 +37,8 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-sort-by-usage t)
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
@@ -62,6 +63,7 @@ values."
      ocaml
      twitter
      games
+     agda
 
      ;; private layer
      proof-general
@@ -317,9 +319,6 @@ you should place your code here."
     "os" 'org-capture
     "od" 'org-todo-list)
 
-  ;; (spacemacs/set-leader-keys-for-major-mode 'haskell-mode
-  ;;   "t" 'ghc-show-type
-  ;;   "i" 'ghc-insert-template-or-signature)
 
   (with-eval-after-load 'org
 

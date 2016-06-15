@@ -60,6 +60,7 @@
 
         "]" 'proof-assert-next-command-interactive
         "[" 'proof-undo-last-successful-command
+        "r" 'proof-layout-windows
         "n" 'proof-goto-point))))
 
 ;;; packages.el ends here
