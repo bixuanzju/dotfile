@@ -64,6 +64,7 @@ values."
      twitter
      games
      agda
+     lua
 
      ;; private layer
      proof-general
