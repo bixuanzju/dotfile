@@ -16,20 +16,19 @@
 (setq proof-general-packages
       '(
         (proof-general :location local)
-        company-coq
+        (company-coq :toggle (configuration-layer/package-usedp 'company))
         ))
 
-(when (configuration-layer/package-usedp 'company)
-  (defun proof-general/init-company-coq ()
-    (use-package company-coq
-      :defer t
-      :init (add-hook 'coq-mode-hook #'company-coq-mode)
-      :config
-      (progn
-        (spacemacs/set-leader-keys-for-major-mode 'coq-mode
-          "g" 'company-coq-jump-to-definition
-          "d" 'company-coq-doc
-          "o" 'company-coq-occur)))))
+(defun proof-general/init-company-coq ()
+  (use-package company-coq
+    :defer t
+    :init (add-hook 'coq-mode-hook #'company-coq-mode)
+    :config
+    (progn
+      (spacemacs/set-leader-keys-for-major-mode 'coq-mode
+        "g" 'company-coq-jump-to-definition
+        "d" 'company-coq-doc
+        "o" 'company-coq-occur))))
 
 ;; brew install texi2html
 ;; brew install proof-general --HEAD
