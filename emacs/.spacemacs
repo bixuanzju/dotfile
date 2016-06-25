@@ -55,7 +55,6 @@ values."
      colors
      idris
      (haskell :variables
-              ;; haskell-enable-ghc-mod-support nil
               haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
      latex
