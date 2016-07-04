@@ -6,6 +6,10 @@ export PATH="/usr/local/smlnj/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/u
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
+alias ec='emacsclient -c -n'
+alias ems='emacs --daemon'
+
+
 # Less
 
 # Set the default Less options.

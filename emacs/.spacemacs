@@ -51,7 +51,9 @@ values."
      spell-checking
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil)
-     version-control
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl)
+
      osx
      colors
      idris
@@ -67,6 +69,8 @@ values."
      lua
      sml
      yaml
+     (c-c++ :variables c-c++-enable-clang-support t)
+     semantic
 
      ;; private layer
      proof-general
