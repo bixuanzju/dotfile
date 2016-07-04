@@ -17,6 +17,7 @@
       '(
         (proof-general :location local)
         (company-coq :toggle (configuration-layer/package-usedp 'company))
+        smartparens
         ))
 
 (defun proof-general/init-company-coq ()
@@ -61,5 +62,12 @@
         "[" 'proof-undo-last-successful-command
         "r" 'proof-layout-windows
         "n" 'proof-goto-point))))
+
+(defun proof-general/post-init-smartparens ()
+  (spacemacs/add-to-hooks
+   (if dotspacemacs-smartparens-strict-mode
+       'smartparens-strict-mode
+     'smartparens-mode)
+   '(coq-mode-hook)))
 
 ;;; packages.el ends here

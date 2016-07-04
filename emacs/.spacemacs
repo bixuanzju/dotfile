@@ -70,7 +70,7 @@ values."
      sml
      yaml
      (c-c++ :variables c-c++-enable-clang-support t)
-     semantic
+     ;; semantic
 
      ;; private layer
      proof-general
