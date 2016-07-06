@@ -2,7 +2,7 @@
 
 export MANPATH="/usr/local/man:/usr/man:/usr/local/share/man:/usr/share/man:/usr/local/opt/coreutils/libexec/gnuman"
 
-export PATH="/usr/local/smlnj/bin:/usr/local/bin:/usr/X11R6/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
@@ -35,7 +35,7 @@ fi
 alias rm='trash'
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
-export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="/usr/local/smlnj/bin:${HOME}/.local/bin:${PATH}"
 
 eval "$(stack --bash-completion-script stack)"
 
