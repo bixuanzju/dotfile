@@ -42,8 +42,7 @@ values."
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
-     (markdown :variables
-               markdown-live-preview-engine 'vmd)
+     markdown
      org
      (shell :variables
             shell-default-height 30
@@ -65,11 +64,12 @@ values."
      ocaml
      ;; twitter
      ;; games
-     ;; agda
+     agda
      lua
      sml
      yaml
      (c-c++ :variables c-c++-enable-clang-support t)
+     html
      ;; semantic
 
      ;; private layer
@@ -81,7 +81,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages that will not be install and loaded.
-   dotspacemacs-excluded-packages '(ghc company-ghc)
+   dotspacemacs-excluded-packages '(evil-unimpaired ghc company-ghc)
    ;; Defines the behaviour of Spacemacs when downloading packages.
    ;; Possible values are `used', `used-but-keep-unused' and `all'. `used' will
    ;; download only explicitly used packages and remove any unused packages as
