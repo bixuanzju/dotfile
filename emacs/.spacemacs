@@ -36,7 +36,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
+     helm
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t)
      emacs-lisp
@@ -54,7 +54,6 @@ values."
                       version-control-diff-tool 'diff-hl)
 
      osx
-     colors
      idris
      (haskell :variables
               haskell-completion-backend 'intero
@@ -62,15 +61,12 @@ values."
      (latex :variables latex-build-command "LatexMk")
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
-     ;; twitter
-     ;; games
-     agda
      lua
      sml
      yaml
      (c-c++ :variables c-c++-enable-clang-support t)
      html
-     ;; semantic
+     agda
 
      ;; private layer
      proof-general
@@ -80,6 +76,8 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
+   ;; A list of packages that cannot be updated.
+   dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be install and loaded.
    dotspacemacs-excluded-packages '(evil-unimpaired ghc company-ghc)
    ;; Defines the behaviour of Spacemacs when downloading packages.
@@ -106,7 +104,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https nil
+   dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 10
    ;; If non nil then spacemacs will check for updates at startup
@@ -189,7 +187,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -211,7 +209,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-transient-state t
+   dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
