@@ -38,7 +38,8 @@ values."
      ;; ----------------------------------------------------------------
      helm
      (auto-completion :variables
-                      auto-completion-enable-sort-by-usage t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-private-snippets-directory "~/dotfile/emacs/snippets/")
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
@@ -67,6 +68,8 @@ values."
      (c-c++ :variables c-c++-enable-clang-support t)
      html
      agda
+     json
+     javascript
 
      ;; private layer
      proof-general
@@ -78,8 +81,8 @@ values."
    dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
-   ;; A list of packages that will not be install and loaded.
-   dotspacemacs-excluded-packages '(evil-unimpaired ghc company-ghc)
+   ;; A list of packages that will not be installed and loaded.
+   dotspacemacs-excluded-packages '(ghc company-ghc)
    ;; Defines the behaviour of Spacemacs when downloading packages.
    ;; Possible values are `used', `used-but-keep-unused' and `all'. `used' will
    ;; download only explicitly used packages and remove any unused packages as
@@ -268,7 +271,7 @@ values."
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
-   ;; If non nil advises quit functions to keep server open when quitting.
+   ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
    ;; List of search tool executable names. Spacemacs uses the first installed
@@ -310,7 +313,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  (setq powerline-default-separator 'alternate)
+  ;; (setq powerline-default-separator 'utf-8)
 
   (setq vc-follow-symlinks t)
 
