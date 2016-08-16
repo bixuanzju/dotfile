@@ -51,15 +51,13 @@ values."
      spell-checking
      (syntax-checking :variables
                       syntax-checking-enable-tooltips nil)
-     (version-control :variables
-                      version-control-diff-tool 'diff-hl)
-
+     version-control
      osx
      idris
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
-     (latex :variables latex-build-command "LatexMk")
+     latex
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
      lua
@@ -68,8 +66,7 @@ values."
      (c-c++ :variables c-c++-enable-clang-support t)
      html
      agda
-     json
-     javascript
+     pandoc
 
      ;; private layer
      proof-general
@@ -78,11 +75,11 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(json-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(ghc company-ghc)
+   dotspacemacs-excluded-packages '(ghc company-ghc evil-unimpaired)
    ;; Defines the behaviour of Spacemacs when downloading packages.
    ;; Possible values are `used', `used-but-keep-unused' and `all'. `used' will
    ;; download only explicitly used packages and remove any unused packages as
@@ -111,8 +108,14 @@ values."
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 10
    ;; If non nil then spacemacs will check for updates at startup
-   ;; when the current branch is not `develop'. (default t)
-   dotspacemacs-check-for-update t
+   ;; when the current branch is not `develop'. Note that checking for
+   ;; new versions works via git commands, thus it calls GitHub services
+   ;; whenever you start Emacs. (default nil)
+   dotspacemacs-check-for-update nil
+   ;; If non-nil, a form that evaluates to a package directory. For example, to
+   ;; use different package directories for different Emacs versions, set this
+   ;; to `emacs-version'.
+   dotspacemacs-elpa-subdirectory 'emacs-version
    ;; One of `vim', `emacs' or `hybrid'.
    ;; `hybrid' is like `vim' except that `insert state' is replaced by the
    ;; `hybrid state' with `emacs' key bindings. The value can also be a list
@@ -129,8 +132,8 @@ values."
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
-   ;; List of items to show in startup buffer or an association list of of
-   ;; the form `(list-type . list-size)`. If nil it is disabled.
+   ;; List of items to show in startup buffer or an association list of
+   ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
    dotspacemacs-startup-lists nil
@@ -325,6 +328,19 @@ you should place your code here."
     "oa" 'org-agenda-list
     "os" 'org-capture
     "od" 'org-todo-list)
+
+  (setq spacemacs-space-doc-modificators
+        '(spacemacs//space-doc-org-indent-mode
+          spacemacs//space-doc-view-mode
+          spacemacs//space-doc-hide-line-numbers
+          spacemacs//space-doc-emphasis-overlays
+          spacemacs//space-doc-meta-tags-overlays
+          spacemacs//space-doc-link-protocol
+          spacemacs//space-doc-org-block-line-face-remap
+          spacemacs//space-doc-org-kbd-face-remap
+          spacemacs//space-doc-resize-inline-images
+          spacemacs//space-doc-advice-org-do-emphasis-faces))
+
 
 
   (with-eval-after-load 'org
