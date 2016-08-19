@@ -50,7 +50,8 @@ values."
             shell-default-position 'bottom)
      spell-checking
      (syntax-checking :variables
-                      syntax-checking-enable-tooltips nil)
+                      syntax-checking-enable-tooltips nil
+                      syntax-checking-use-original-bitmaps t)
      version-control
      osx
      idris
@@ -213,6 +214,11 @@ values."
    ;; define the position to display `helm', options are `bottom', `top',
    ;; `left', or `right'. (default 'bottom)
    dotspacemacs-helm-position 'bottom
+   ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
+   ;; in all non-asynchronous sources. If set to `source', preserve individual
+   ;; source settings. Else, disable fuzzy matching in all sources.
+   ;; (default 'always)
+   dotspacemacs-helm-use-fuzzy 'always
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
    dotspacemacs-enable-paste-transient-state nil
