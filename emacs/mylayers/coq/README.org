@@ -1,0 +1,97 @@
+#+TITLE: Coq layer
+
+[[file:img/coq.png]]
+
+* Table of Contents                                        :TOC_4_org:noexport:
+ - [[Description][Description]]
+ - [[Install][Install]]
+   - [[Layer][Layer]]
+   - [[Coq][Coq]]
+   - [[Proof General][Proof General]]
+ - [[Key bindings][Key bindings]]
+   - [[Laying out windows][Laying out windows]]
+   - [[Managing prover process][Managing prover process]]
+   - [[Prover queries][Prover queries]]
+   - [[Moving the point][Moving the point]]
+   - [[Inserting][Inserting]]
+
+* Description
+This layer adds support for the [[https://coq.inria.fr/][Coq]] proof assistant.
+
+* Install
+** Layer
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =coq= to the existing =dotspacemacs-configuration-layers= list in this file.
+
+
+** Coq
+Official installers for MacOS and Windows are available from:
+[[https://coq.inria.fr/download]].
+
+Linus users can build from source or consult with their own package managers.
+
+
+** Proof General
+[[https://github.com/ProofGeneral/PG][Proof General]] provides a powerful, generic environment for using interactive
+proof assistants.
+
+To install, run the following commands:
+
+
+* Key bindings
+All Coq specific bindings are prefixed with the major-mode leader ~SPC m~.
+
+** Laying out windows
+
+| Key Binding | Description           |
+|-------------+-----------------------|
+| ~ll~        | Re-layout windows     |
+| ~lc~        | Clear response buffer |
+| ~lp~        | Show current proof    |
+
+** Managing prover process
+
+| Key Binding | Description                                                     |
+|-------------+-----------------------------------------------------------------|
+| ~pc~        | Interrupt prover                                                |
+| ~px~        | Quit prover                                                     |
+| ~pr~        | Retract buffer - rewinds and moves point to beginning of buffer |
+| ~pb~        | Process buffer - processes and moves point to end of buffer     |
+
+** Prover queries
+The mnemonic for =a= is "ask".
+
+| Key Binding | Description                        |
+|-------------+------------------------------------|
+| ~af~        | Search (mnemonic: "find theorems") |
+| ~ap~        | Print                              |
+| ~ac~        | Check                              |
+| ~ab~        | About                              |
+| ~aip~       | Print (showing implicits)          |
+| ~aic~       | Check (showing implicits)          |
+| ~aib~       | About (showing implicits)          |
+| ~anp~       | Print (showing all)                |
+| ~anc~       | Check (showing all)                |
+| ~anb~       | About (showing all)                |
+
+** Moving the point
+
+| Key Binding | Description                     |
+|-------------+---------------------------------|
+| ~g.~        | Go to last processed command    |
+| ~ga~        | Go to start of command at point |
+| ~ge~        | Go to end of command at point   |
+| ~gd~        | Go to definition at point       |
+
+** Inserting
+
+| Key Binding | Description                                                     |
+|-------------+-----------------------------------------------------------------|
+| ~il~        | Extract lemma from current goal - exit with ~C-RET~ (not ~C-j~) |
+| ~im~        | Insert =match= on a type                                        |
+| ~ie~        | Insert =End <section-name>=                                     |
+| ~M-RET~     | Insert regular match branch                                     |
+| ~M-S-RET~   | Insert =match goal with= branch                                 |
+
+Note the last two are regular =company-coq= bindings, left alone since they are
+most useful in insert mode.

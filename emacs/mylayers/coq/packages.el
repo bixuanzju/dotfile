@@ -1,4 +1,4 @@
-;;; packages.el --- proof-general layer packages file for Spacemacs.
+;;; packages.el --- coq layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2016 Sylvain Benner & Contributors
 ;;
@@ -9,18 +9,16 @@
 ;;
 ;;; License: GPLv3
 
-;;; Commentary:
-
 ;;; Code:
 
-(setq proof-general-packages
+(setq coq-packages
       '(
         (proof-general :location local)
         (company-coq :toggle (configuration-layer/package-usedp 'company))
         smartparens
         ))
 
-(defun proof-general/init-company-coq ()
+(defun coq/init-company-coq ()
   (use-package company-coq
     :defer t
     :init (add-hook 'coq-mode-hook #'company-coq-mode)
@@ -37,17 +35,19 @@
 ;; brew install texi2html
 ;; brew install proof-general --HEAD
 ;; Credits to https://github.com/tchajed/spacemacs-coq
-(defun proof-general/init-proof-general ()
+(defun coq/init-proof-general ()
   (use-package proof-site
     :mode ("\\.v\\'" . coq-mode)
     :defer t
     :config
     (progn
+      (spacemacs|diminish outline-minor-mode)
+      (spacemacs|diminish holes-mode)
+      (spacemacs|diminish hs-minor-mode)
+
       (setq proof-splash-seen t)
 
       (setq proof-three-window-mode-policy 'hybrid)
-
-      ;; (setq coq-compile-before-require t)
 
       ;; I don't know who wants to evaluate comments
       ;; one-by-one, but I don't.
@@ -97,7 +97,7 @@
         "ie" 'coq-end-Section)
       )))
 
-(defun proof-general/post-init-smartparens ()
+(defun coq/post-init-smartparens ()
   (spacemacs/add-to-hooks
    (if dotspacemacs-smartparens-strict-mode
        'smartparens-strict-mode
