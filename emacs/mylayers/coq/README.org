@@ -16,13 +16,13 @@
    - [[Inserting][Inserting]]
 
 * Description
-This layer adds support for the [[https://coq.inria.fr/][Coq]] proof assistant.
+This layer adds support for the [[https://coq.inria.fr/][Coq]] proof assistant (adapted from
+[[https://github.com/tchajed/spacemacs-coq]]).
 
 * Install
 ** Layer
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
 add =coq= to the existing =dotspacemacs-configuration-layers= list in this file.
-
 
 ** Coq
 Official installers for MacOS and Windows are available from:
@@ -30,13 +30,19 @@ Official installers for MacOS and Windows are available from:
 
 Linus users can build from source or consult with their own package managers.
 
-
 ** Proof General
 [[https://github.com/ProofGeneral/PG][Proof General]] provides a powerful, generic environment for using interactive
 proof assistants.
 
 To install, run the following commands:
 
+#+BEGIN_SRC sh
+git clone https://github.com/ProofGeneral/PG ~/.emacs.d/private/PG
+cd ~/.emacs.d/private/PG
+make
+#+END_SRC
+
+*Note*: This layer assumes you have installed Proof General to =~/.emacs.d/private/=.
 
 * Key bindings
 All Coq specific bindings are prefixed with the major-mode leader ~SPC m~.

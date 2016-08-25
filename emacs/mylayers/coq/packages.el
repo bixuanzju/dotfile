@@ -32,13 +32,11 @@
         "im" 'company-coq-insert-match-construct
         "gd" 'company-coq-jump-to-definition))))
 
-;; brew install texi2html
-;; brew install proof-general --HEAD
-;; Credits to https://github.com/tchajed/spacemacs-coq
 (defun coq/init-proof-general ()
   (use-package proof-site
     :mode ("\\.v\\'" . coq-mode)
     :defer t
+    :load-path "~/.emacs.d/private/PG/generic"
     :config
     (progn
       (spacemacs|diminish outline-minor-mode)
