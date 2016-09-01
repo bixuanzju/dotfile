@@ -13,9 +13,10 @@
 
 (setq coq-packages
       '(
-        (proof-general :location local)
         (company-coq :toggle (configuration-layer/package-usedp 'company))
+        (proof-general :location local)
         smartparens
+        vi-tilde-fringe
         ))
 
 (defun coq/init-company-coq ()
@@ -30,6 +31,7 @@
       (spacemacs/set-leader-keys-for-major-mode 'coq-mode
         "il" 'company-coq-lemma-from-goal
         "im" 'company-coq-insert-match-construct
+        "ao" 'company-coq-occur
         "gd" 'company-coq-jump-to-definition))))
 
 (defun coq/init-proof-general ()
@@ -39,17 +41,17 @@
     :load-path "~/.emacs.d/private/PG/generic"
     :config
     (progn
-      (spacemacs|diminish outline-minor-mode)
+      (spacemacs|diminish company-coq-mode)
       (spacemacs|diminish holes-mode)
       (spacemacs|diminish hs-minor-mode)
+      (spacemacs|diminish outline-minor-mode)
+      (spacemacs|diminish proof-active-buffer-fake-minor-mode)
+      (spacemacs|diminish yas-minor-mode " ⓨ" " y")
 
-      (setq proof-splash-seen t)
-
-      (setq proof-three-window-mode-policy 'hybrid)
-
-      ;; I don't know who wants to evaluate comments
-      ;; one-by-one, but I don't.
-      (setq proof-script-fly-past-comments t)
+      (setq company-coq-disabled-features '(hello)
+            proof-three-window-mode-policy 'hybrid
+            proof-script-fly-past-comments t
+            proof-splash-seen t)
 
       (dolist (prefix '(("ml" . "pg/layout")
                         ("mp" . "pg/prover")
@@ -92,8 +94,7 @@
         "ga" 'proof-goto-command-start
         "ge" 'proof-goto-command-end
         ;; Insertions
-        "ie" 'coq-end-Section)
-      )))
+        "ie" 'coq-end-Section))))
 
 (defun coq/post-init-smartparens ()
   (spacemacs/add-to-hooks
@@ -101,5 +102,11 @@
        'smartparens-strict-mode
      'smartparens-mode)
    '(coq-mode-hook)))
+
+(defun coq/post-init-vi-tilde-fringe ()
+  (spacemacs/add-to-hooks 'spacemacs/disable-vi-tilde-fringe
+                          '(coq-response-mode-hook
+                            coq-goals-mode-hook)))
+
 
 ;;; packages.el ends here

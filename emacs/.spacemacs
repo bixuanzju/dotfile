@@ -43,7 +43,7 @@ values."
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
-     markdown
+     (markdown :variables markdown-live-preview-engine 'vmd)
      org
      (shell :variables
             shell-default-height 30
@@ -76,11 +76,11 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(json-mode)
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '()
+   dotspacemacs-frozen-packages '(evil-unimpaired)
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(evil-unimpaired)
+   dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -347,6 +347,11 @@ you should place your code here."
           spacemacs//space-doc-resize-inline-images
           spacemacs//space-doc-advice-org-do-emphasis-faces))
 
+  (add-hook 'coq-mode-hook
+            (lambda ()
+              (setq-local prettify-symbols-alist
+                          '((":=" . ?≜) ("Proof." . ?∵) ("Qed." . ?■)
+                            ("Defined." . ?□) ("Time" . ?⏱) ("admit." . ?💣) ("Admitted." . ?😱)))))
 
 
   (with-eval-after-load 'org

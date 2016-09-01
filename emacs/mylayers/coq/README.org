@@ -2,18 +2,20 @@
 
 [[file:img/coq.png]]
 
-* Table of Contents                                        :TOC_4_org:noexport:
- - [[Description][Description]]
- - [[Install][Install]]
-   - [[Layer][Layer]]
-   - [[Coq][Coq]]
-   - [[Proof General][Proof General]]
- - [[Key bindings][Key bindings]]
-   - [[Laying out windows][Laying out windows]]
-   - [[Managing prover process][Managing prover process]]
-   - [[Prover queries][Prover queries]]
-   - [[Moving the point][Moving the point]]
-   - [[Inserting][Inserting]]
+* Table of Contents                                        :TOC_4_gh:noexport:
+ - [[#description][Description]]
+ - [[#install][Install]]
+   - [[#layer][Layer]]
+   - [[#coq][Coq]]
+   - [[#proof-general][Proof General]]
+ - [[#key-bindings][Key bindings]]
+   - [[#laying-out-windows][Laying out windows]]
+   - [[#managing-prover-process][Managing prover process]]
+   - [[#prover-queries][Prover queries]]
+   - [[#moving-the-point][Moving the point]]
+   - [[#inserting][Inserting]]
+ - [[#faq][FAQ]]
+   - [[#there-are-empty-square-boxes-in-place-of-math-operators][There are empty square boxes in place of math operators]]
 
 * Description
 This layer adds support for the [[https://coq.inria.fr/][Coq]] proof assistant (adapted from
@@ -28,7 +30,7 @@ add =coq= to the existing =dotspacemacs-configuration-layers= list in this file.
 Official installers for MacOS and Windows are available from:
 [[https://coq.inria.fr/download]].
 
-Linus users can build from source or consult with their own package managers.
+Linux users can build from source or consult with their own package managers.
 
 ** Proof General
 [[https://github.com/ProofGeneral/PG][Proof General]] provides a powerful, generic environment for using interactive
@@ -36,13 +38,17 @@ proof assistants.
 
 To install, run the following commands:
 
+*Note*: The =make= step is recommended but optional. Compilation has been known
+to fail on Windows, but Proof General should work regardless.
+
 #+BEGIN_SRC sh
 git clone https://github.com/ProofGeneral/PG ~/.emacs.d/private/PG
 cd ~/.emacs.d/private/PG
 make
 #+END_SRC
 
-*Note*: This layer assumes you have installed Proof General to =~/.emacs.d/private/=.
+*Note*: This layer assumes you have installed Proof General to
+=~/.emacs.d/private/=.
 
 * Key bindings
 All Coq specific bindings are prefixed with the major-mode leader ~SPC m~.
@@ -67,18 +73,19 @@ All Coq specific bindings are prefixed with the major-mode leader ~SPC m~.
 ** Prover queries
 The mnemonic for =a= is "ask".
 
-| Key Binding | Description                        |
-|-------------+------------------------------------|
-| ~af~        | Search (mnemonic: "find theorems") |
-| ~ap~        | Print                              |
-| ~ac~        | Check                              |
-| ~ab~        | About                              |
-| ~aip~       | Print (showing implicits)          |
-| ~aic~       | Check (showing implicits)          |
-| ~aib~       | About (showing implicits)          |
-| ~anp~       | Print (showing all)                |
-| ~anc~       | Check (showing all)                |
-| ~anb~       | About (showing all)                |
+| Key Binding | Description                                 |
+|-------------+---------------------------------------------|
+| ~af~        | Search (mnemonic: "find theorems")          |
+| ~ao~        | Show an outline of the current proof script |
+| ~ap~        | Print                                       |
+| ~ac~        | Check                                       |
+| ~ab~        | About                                       |
+| ~aip~       | Print (showing implicits)                   |
+| ~aic~       | Check (showing implicits)                   |
+| ~aib~       | About (showing implicits)                   |
+| ~anp~       | Print (showing all)                         |
+| ~anc~       | Check (showing all)                         |
+| ~anb~       | About (showing all)                         |
 
 ** Moving the point
 
@@ -100,4 +107,19 @@ The mnemonic for =a= is "ask".
 | ~M-S-RET~   | Insert =match goal with= branch                                 |
 
 Note the last two are regular =company-coq= bindings, left alone since they are
-most useful in insert mode.
+most useful in insert mode. The full =company-coq= tutorial showcasing all
+available =company-coq= keybindings can be accessed at any time using =SPC SPC
+company-coq-tutorial=.
+
+* FAQ
+** There are empty square boxes in place of math operators
+Math symbols present in your buffer (e.g. forall exists) will attempt to be
+prettified, if you are seeing empty square boxes this means an appropriate math
+symbol cannot be found in your font. You can either install a appropriate math
+font, or disable the feature by adding the following snippet to the your
+=dotspacemacs/user-config=.
+
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load 'company-coq
+  (add-to-list 'company-coq-disabled-features 'prettify-symbols))
+#+END_SRC
