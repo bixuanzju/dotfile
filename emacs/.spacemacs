@@ -36,7 +36,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
+     ivy
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-private-snippets-directory "~/dotfile/emacs/snippets/")
@@ -77,7 +77,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '(evil-unimpaired)
+   dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -154,7 +154,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka"
-                               :size 18
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -343,6 +343,18 @@ you should place your code here."
               (setq-local prettify-symbols-alist
                           '((":=" . ?≜) ("Proof." . ?∵) ("Qed." . ?■)
                             ("Defined." . ?□) ("Time" . ?⏱) ("admit." . ?💣) ("Admitted." . ?😱)))))
+
+  (defun agda2-normalized-goal-and-context ()
+    (interactive)
+    (agda2-goal-and-context '(3)))
+  (defun agda2-normalized-goal-and-context-and-inferred ()
+    (interactive)
+    (agda2-goal-and-context-and-inferred '(3)))
+
+  (with-eval-after-load 'agda2-mode
+    (spacemacs/set-leader-keys-for-major-mode 'agda2-mode
+      "."   'agda2-normalized-goal-and-context-and-inferred
+      ","   'agda2-normalized-goal-and-context))
 
 
   (with-eval-after-load 'org
