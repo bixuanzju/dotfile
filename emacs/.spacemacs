@@ -150,8 +150,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
-                         spacemacs-dark
+   dotspacemacs-themes '(spacemacs-dark
+                         zenburn
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -294,7 +294,7 @@ values."
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
-   dotspacemacs-highlight-delimiters 'all
+   dotspacemacs-highlight-delimiters nil
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -367,6 +367,14 @@ you should place your code here."
     (spacemacs/set-leader-keys-for-major-mode 'agda2-mode
       "."   'agda2-normalized-goal-and-context-and-inferred
       ","   'agda2-normalized-goal-and-context))
+
+
+  (setq purpose-user-mode-purposes '((coq-mode . edit)))
+  (setq purpose-user-name-purposes '(("*goals*" . display)
+                                     ("*response*" . display)))
+  (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
+                                       ("^\\*terminal<[0-9]>*\\*$" . terminal)))
+  (purpose-compile-user-configuration) ; activates your changes
 
 
   (with-eval-after-load 'org
