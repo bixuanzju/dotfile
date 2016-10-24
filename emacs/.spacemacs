@@ -46,6 +46,7 @@ values."
      (markdown :variables markdown-live-preview-engine 'vmd)
      org
      (shell :variables
+            shell-default-shell 'multi-term
             shell-default-height 30
             shell-default-position 'bottom)
      spell-checking
@@ -58,15 +59,18 @@ values."
               haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
      latex
-     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ocaml
      lua
      sml
      yaml
-     (c-c++ :variables c-c++-enable-clang-support t)
      html
-     agda
+     ;; agda
+     (agda :variables
+           agda-mode-path
+           "/Users/jeremybi/Projects/agda/.stack-work/install/x86_64-osx/lts-7.0/8.0.1/share/x86_64-osx-ghc-8.0.1/Agda-2.5.2/emacs-mode/agda2.el")
      pandoc
+     purescript
+     spacemacs-purpose
 
      ;; private layer
      coq
@@ -75,7 +79,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(fstar-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -160,6 +164,11 @@ values."
                                :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
+   ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
+   ;; (default "SPC")
+   dotspacemacs-emacs-command-key "SPC"
+   ;; The key used for Vim Ex commands (default ":")
+   dotspacemacs-ex-command-key ":"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
@@ -167,11 +176,8 @@ values."
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
    dotspacemacs-major-mode-leader-key ","
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m)
+   ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
-   ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
-   ;; (default "SPC")
-   dotspacemacs-emacs-command-key "SPC"
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
    ;; Setting it to a non-nil value, allows for separate commands under <C-i>
@@ -233,6 +239,12 @@ values."
    ;; right; if there is insufficient space it displays it at the bottom.
    ;; (default 'bottom)
    dotspacemacs-which-key-position 'bottom
+   ;; Control where `switch-to-buffer' displays the buffer. If nil,
+   ;; `switch-to-buffer' displays the buffer in the current window even if
+   ;; another same-purpose window is available. If non nil, `switch-to-buffer'
+   ;; displays the buffer in a same-purpose window even if the buffer can be
+   ;; displayed in the current window. (default nil)
+   dotspacemacs-switch-to-buffer-prefers-purpose nil
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)

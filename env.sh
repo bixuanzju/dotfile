@@ -33,10 +33,7 @@ fi
 # export NIX_PATH=nixpkgs=/Users/jeremybi/Projects/nixpkgs
 
 alias rm='trash'
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
-export PATH="/usr/local/smlnj/bin:${HOME}/.local/bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
 
 eval "$(stack --bash-completion-script stack)"
-
-source <(f2j --bash-completion-script `which f2j`)
