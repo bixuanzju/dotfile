@@ -36,7 +36,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
+     helm
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-private-snippets-directory "~/dotfile/emacs/snippets/")
@@ -64,10 +64,7 @@ values."
      sml
      yaml
      html
-     ;; agda
-     (agda :variables
-           agda-mode-path
-           "/Users/jeremybi/Projects/agda/.stack-work/install/x86_64-osx/lts-7.0/8.0.1/share/x86_64-osx-ghc-8.0.1/Agda-2.5.2/emacs-mode/agda2.el")
+     agda
      pandoc
      purescript
      spacemacs-purpose
@@ -79,7 +76,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(fstar-mode)
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -341,10 +338,6 @@ you should place your code here."
 
   (setq vc-follow-symlinks t)
 
-  (setq google-translate-default-target-language "zh-CN")
-
-  (add-to-list 'page-break-lines-modes 'idris-mode)
-
   (spacemacs/set-leader-keys
     "oa" 'org-agenda-list
     "os" 'org-capture
@@ -369,9 +362,11 @@ you should place your code here."
       ","   'agda2-normalized-goal-and-context))
 
 
-  (setq purpose-user-mode-purposes '((coq-mode . edit)))
+  (setq purpose-user-mode-purposes '((coq-mode . edit)
+                                     (tuareg-mode . edit)))
   (setq purpose-user-name-purposes '(("*goals*" . display)
-                                     ("*response*" . display)))
+                                     ("*response*" . display)
+                                     ("*utop*" . repl)))
   (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
                                        ("^\\*terminal<[0-9]>*\\*$" . terminal)))
   (purpose-compile-user-configuration) ; activates your changes

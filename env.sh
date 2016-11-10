@@ -20,9 +20,6 @@ alias ems='emacs --daemon'
 # Added -x 4, to get 4-position as tab stop
 export LESS='-F -g -i -M -R -w -X -x 4 -z-4'
 
-# OPAM configuration
-. /Users/jeremybi/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
 # Set the Less input preprocessor.
 if (( $+commands[lesspipe.sh] )); then
     export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
@@ -35,5 +32,8 @@ fi
 alias rm='trash'
 
 export PATH="${HOME}/.local/bin:${PATH}"
+
+# OPAM configuration
+. /Users/jeremybi/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 eval "$(stack --bash-completion-script stack)"
