@@ -14,7 +14,10 @@
 (setq coq-packages
       '(
         (company-coq :toggle (configuration-layer/package-usedp 'company))
-        (proof-general :location local)
+        (proof-general :location (recipe
+                                  :fetcher github
+                                  :repo "ProofGeneral/PG"
+                                  :files ("*")))
         smartparens
         vi-tilde-fringe
         ))
@@ -38,7 +41,10 @@
   (use-package proof-site
     :mode ("\\.v\\'" . coq-mode)
     :defer t
-    :load-path "~/.emacs.d/private/PG/generic"
+    :init
+    (progn
+      (setq coq/proof-general-load-path (concat (spacemacs//get-package-directory 'proof-general) "generic"))
+      (add-to-list 'load-path coq/proof-general-load-path))
     :config
     (progn
       (spacemacs|diminish company-coq-mode)
