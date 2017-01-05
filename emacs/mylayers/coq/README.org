@@ -7,7 +7,6 @@
  - [[#install][Install]]
    - [[#layer][Layer]]
    - [[#coq][Coq]]
-   - [[#proof-general][Proof General]]
  - [[#key-bindings][Key bindings]]
    - [[#laying-out-windows][Laying out windows]]
    - [[#managing-prover-process][Managing prover process]]
@@ -31,24 +30,6 @@ Official installers for MacOS and Windows are available from:
 [[https://coq.inria.fr/download]].
 
 Linux users can build from source or consult with their own package managers.
-
-** Proof General
-[[https://github.com/ProofGeneral/PG][Proof General]] provides a powerful, generic environment for using interactive
-proof assistants.
-
-To install, run the following commands:
-
-*Note*: The =make= step is recommended but optional. Compilation has been known
-to fail on Windows, but Proof General should work regardless.
-
-#+BEGIN_SRC sh
-git clone https://github.com/ProofGeneral/PG ~/.emacs.d/private/PG
-cd ~/.emacs.d/private/PG
-make
-#+END_SRC
-
-*Note*: This layer assumes you have installed Proof General to
-=~/.emacs.d/private/=.
 
 * Key bindings
 All Coq specific bindings are prefixed with the major-mode leader ~SPC m~.

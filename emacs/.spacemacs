@@ -66,10 +66,8 @@ values."
      html
      agda
      pandoc
-     purescript
      spacemacs-purpose
-
-     ;; private layer
+     csv
      coq
      )
    ;; List of additional packages that will be installed without being
@@ -372,11 +370,6 @@ you should place your code here."
   (purpose-compile-user-configuration) ; activates your changes
 
 
-  ;; (setq twelf-root "/Applications/Twelf/")
-  ;; (load (concat twelf-root "emacs/twelf-init.el"))
-
-
-
   (with-eval-after-load 'org
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -439,3 +432,9 @@ you should place your code here."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+)
