@@ -27,7 +27,7 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/dotfile/emacs/mylayers/")
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
@@ -39,6 +39,7 @@ values."
      helm
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t
                       auto-completion-private-snippets-directory "~/dotfile/emacs/snippets/")
      emacs-lisp
      (git :variables
@@ -65,8 +66,8 @@ values."
      yaml
      html
      agda
-     pandoc
-     spacemacs-purpose
+     ;; pandoc
+     ;; spacemacs-purpose
      csv
      coq
      )
@@ -145,9 +146,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(spacemacs-light
                          zenburn
-                         spacemacs-light)
+                         spacemacs-dark)
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -360,14 +361,14 @@ you should place your code here."
       ","   'agda2-normalized-goal-and-context))
 
 
-  (setq purpose-user-mode-purposes '((coq-mode . edit)
-                                     (tuareg-mode . edit)))
-  (setq purpose-user-name-purposes '(("*goals*" . display)
-                                     ("*response*" . display)
-                                     ("*utop*" . repl)))
-  (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
-                                       ("^\\*terminal<[0-9]>*\\*$" . terminal)))
-  (purpose-compile-user-configuration) ; activates your changes
+  ;; (setq purpose-user-mode-purposes '((coq-mode . edit)
+  ;;                                    (tuareg-mode . edit)))
+  ;; (setq purpose-user-name-purposes '(("*goals*" . display)
+  ;;                                    ("*response*" . display)
+  ;;                                    ("*utop*" . repl)))
+  ;; (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
+  ;;                                      ("^\\*terminal<[0-9]>*\\*$" . terminal)))
+  ;; (purpose-compile-user-configuration) ; activates your changes
 
 
   (with-eval-after-load 'org

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: positivity
+# key: positivity
+# --
+{-# NO_POSITIVITY_CHECK #-}

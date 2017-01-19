@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: terminate
+# key: terminate
+# --
+{-# TERMINATING #-}
