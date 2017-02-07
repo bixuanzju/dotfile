@@ -43,7 +43,9 @@
     :defer t
     :init
     (progn
-      (setq coq/proof-general-load-path (concat (configuration-layer/get-elpa-package-install-directory 'proof-general) "generic"))
+      (setq coq/proof-general-load-path
+            (concat (configuration-layer/get-elpa-package-install-directory
+                     'proof-general) "generic"))
       (add-to-list 'load-path coq/proof-general-load-path))
     :config
     (progn
