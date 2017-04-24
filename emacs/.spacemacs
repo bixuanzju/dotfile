@@ -39,7 +39,6 @@ values."
      ivy
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t
                       auto-completion-private-snippets-directory "~/dotfile/emacs/snippets/")
      emacs-lisp
      (git :variables
@@ -52,6 +51,7 @@ values."
             shell-default-position 'bottom)
      spell-checking
      (syntax-checking :variables
+                      syntax-checking-enable-tooltips nil
                       syntax-checking-use-original-bitmaps t)
      version-control
      osx
@@ -73,6 +73,7 @@ values."
      evil-lion
      java
      racket
+     python
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -352,7 +353,7 @@ you should place your code here."
 
   (require 'ott-mode "~/.opam/4.04.0/share/ott/emacs/ottmode.el")
 
-  (setq powerline-default-separator 'arrow-fade)
+  (setq powerline-default-separator 'alternate)
 
   (setq vc-follow-symlinks t)
 
