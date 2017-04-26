@@ -158,7 +158,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka"
-                               :size 16
+                               :size 17
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -337,6 +337,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
   (load custom-file 'noerror)
+  ;; evil bug! to work with proof-general
+  (setq evil-want-abbrev-expand-on-insert-exit nil)
 
   ;; (setq exec-path-from-shell-check-startup-files nil)
 
@@ -353,7 +355,7 @@ you should place your code here."
 
   (require 'ott-mode "~/.opam/4.04.0/share/ott/emacs/ottmode.el")
 
-  (setq powerline-default-separator 'alternate)
+  (setq powerline-default-separator 'arrow-fade)
 
   (setq vc-follow-symlinks t)
 
