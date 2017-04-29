@@ -355,6 +355,8 @@ you should place your code here."
 
   (require 'ott-mode "~/.opam/4.04.0/share/ott/emacs/ottmode.el")
 
+  (require 'sedel-mode "~/dotfile/emacs/sedel-mode.el")
+
   (setq powerline-default-separator 'arrow-fade)
 
   (setq vc-follow-symlinks t)
