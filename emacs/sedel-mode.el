@@ -61,30 +61,6 @@ The current line must be non-empty."
     (point)))
 
 
-(defvar font-lock-beg)
-(defvar font-lock-end)
-
-(defun sedel-font-lock-extend-region ()
-  "Extend the font-lock region to cover an indented block."
-  (let ((my-beg font-lock-beg)
-        (my-end font-lock-end))
-    (save-excursion
-      (goto-char my-beg)
-      (when (not (bolp))
-        (beginning-of-line))
-      (while (and (not (bobp)) (looking-at-p " "))
-        (forward-line -1))
-      (setq my-beg (point))
-      (goto-char my-end)
-      (unless (sedel--current-line-empty-p)
-        (setq my-end (sedel--next-non-indent)))
-      (if (not (and (= my-beg font-lock-beg)
-                    (= my-end font-lock-end)))
-          (progn (setq font-lock-beg my-beg)
-                 (setq font-lock-end my-end)
-                 t)
-        nil))))
-
 (defun sedel--update-kw ()
   "Update kws."
   (setq sedel-font-lock-keywords
@@ -141,7 +117,6 @@ The current line must be non-empty."
   (sedel--update-kw)
   (set (make-local-variable 'indent-tabs-mode) nil)
   (set (make-local-variable 'comment-start) "--")
-  (add-hook 'font-lock-extend-region-functions 'sedel-font-lock-extend-region)
   (setq font-lock-defaults '((sedel-font-lock-keywords) nil nil))
 
   (use-local-map sedel-mode-map))
