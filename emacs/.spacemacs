@@ -3,9 +3,8 @@
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
+  "Layer configuration:
+This function should only modify configuration layer settings."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -60,6 +59,7 @@ values."
               haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
      latex
+     bibtex
      ocaml
      lua
      sml
@@ -73,6 +73,7 @@ values."
      java
      racket
      python
+     parinfer
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -93,11 +94,10 @@ values."
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
-  "Initialization function.
-This function is called at the very startup of Spacemacs initialization
-before layers configuration.
-You should not put any user code in there besides modifying the variable
-values."
+  "Initialization:
+This function is called at the very beginning of Spacemacs startup,
+before layer configuration.
+It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -138,7 +138,7 @@ values."
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
-   ;; `recents' `bookmarks' `projects' `agenda' `todos'."
+   ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists nil
@@ -347,33 +347,33 @@ values."
    ;; Either nil or a number of seconds. If non-nil zone out after the specified
    ;; number of seconds. (default nil)
    dotspacemacs-zone-out-when-idle nil
+   ;; Run `spacemacs/prettify-org-buffer' when
+   ;; visiting README.org files of Spacemacs.
+   ;; (default nil)
+   dotspacemacs-pretty-docs nil
    ))
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
+  "Initialization for user code:
+This function is called immediately after `dotspacemacs/init', before layer
+configuration.
+It is mostly for variables that should be set before packages are loaded.
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
   (load custom-file 'noerror)
   (setq evil-want-abbrev-expand-on-insert-exit nil)
-  (setq exec-path-from-shell-check-startup-files nil)
-
-  )
+  (setq exec-path-from-shell-check-startup-files nil))
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+  "Configuration for user code:
+This function is called at the very end of Spacemacs startup, after layer
+configuration.
+Put your configuration code here, except for variables that should be set
+before packages are loaded."
 
 
-  (require 'ott-mode "~/.opam/4.04.0/share/ott/emacs/ottmode.el")
+  (require 'ott-mode "~/scratch/ott/emacs/ott-mode.el")
 
   (require 'sedel-mode "~/dotfile/emacs/sedel-mode.el")
 
@@ -381,20 +381,18 @@ you should place your code here."
 
   (setq vc-follow-symlinks t)
 
-  (with-eval-after-load 'intero
-    (with-eval-after-load 'flycheck
-      (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
+  ;; (with-eval-after-load 'intero
+  ;;   (with-eval-after-load 'flycheck
+  ;;     (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
+
+  (add-hook 'dante-mode-hook
+            '(lambda () (flycheck-add-next-checker 'haskell-dante
+                                                   '(warning . haskell-hlint))))
 
   (spacemacs/set-leader-keys
     "oa" 'org-agenda-list
     "os" 'org-capture
     "od" 'org-todo-list)
-
-  (add-hook 'coq-mode-hook
-            (lambda ()
-              (setq-local prettify-symbols-alist
-                          '((":=" . ?≜) ("Proof." . ?∵) ("Qed." . ?■)
-                            ("Defined." . ?□) ("Time" . ?⏱) ("admit." . ?💣) ("Admitted." . ?😱)))))
 
   (defun agda2-normalized-goal-and-context ()
     (interactive)
@@ -407,6 +405,11 @@ you should place your code here."
     (spacemacs/set-leader-keys-for-major-mode 'agda2-mode
       "."   'agda2-normalized-goal-and-context-and-inferred
       ","   'agda2-normalized-goal-and-context))
+
+  ;; You need to modify the following two lines:
+  (setq lean-rootdir "~/Downloads/lean-3.1.0-darwin")
+  (setq load-path (cons "~/Downloads/lean-3.1.0-darwin/share/emacs/site-lisp/lean" load-path))
+  (require 'lean-mode)
 
 
   ;; (setq purpose-user-mode-purposes '((coq-mode . edit)
