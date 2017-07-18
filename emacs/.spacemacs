@@ -68,13 +68,13 @@ This function should only modify configuration layer settings."
      agda
      csv
      coq
-     javascript
+     ;; javascript
      ruby
      java
      racket
      python
-     parinfer
-     )
+     parinfer)
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -350,8 +350,8 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil
-   ))
+   dotspacemacs-pretty-docs nil))
+
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -372,12 +372,19 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  ;; To suppress perl error
+  (exec-path-from-shell-copy-env "LANG")
 
   (require 'ott-mode "~/scratch/ott/emacs/ott-mode.el")
 
   (require 'sedel-mode "~/dotfile/emacs/sedel-mode.el")
 
   (setq powerline-default-separator 'arrow-fade)
+
+  (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
+
+  (with-eval-after-load 'helm-bibtex
+    (add-to-list 'bibtex-completion-cite-commands "citet"))
 
   (setq vc-follow-symlinks t)
 
@@ -407,9 +414,9 @@ before packages are loaded."
       ","   'agda2-normalized-goal-and-context))
 
   ;; You need to modify the following two lines:
-  (setq lean-rootdir "~/Downloads/lean-3.1.0-darwin")
-  (setq load-path (cons "~/Downloads/lean-3.1.0-darwin/share/emacs/site-lisp/lean" load-path))
-  (require 'lean-mode)
+  ;; (setq lean-rootdir "~/Downloads/lean-3.1.0-darwin")
+  ;; (setq load-path (cons "~/Downloads/lean-3.1.0-darwin/share/emacs/site-lisp/lean" load-path))
+  ;; (require 'lean-mode)
 
 
   ;; (setq purpose-user-mode-purposes '((coq-mode . edit)
@@ -488,5 +495,4 @@ before packages are loaded."
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-)
+This function is called at the very end of Spacemacs initialization.")
