@@ -55,9 +55,9 @@ This function should only modify configuration layer settings."
      version-control
      osx
      idris
+     rust
      (haskell :variables
-              haskell-completion-backend 'intero
-              haskell-enable-hindent-style "johan-tibell")
+              haskell-completion-backend 'intero)
      latex
      bibtex
      ocaml
@@ -149,7 +149,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
+   dotspacemacs-themes '(gruvbox
+                         zenburn
                          spacemacs-light
                          spacemacs-dark)
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
@@ -230,8 +231,8 @@ It should only modify the values of Spacemacs settings."
    ;; source settings. Else, disable fuzzy matching in all sources.
    ;; (default 'always)
    dotspacemacs-helm-use-fuzzy 'always
-   ;; If non-nil the paste micro-state is enabled. When enabled pressing `p'
-   ;; several times cycle between the kill ring content. (default nil)
+   ;; If non-nil, the paste transient-state is enabled. And pressing `p' several
+   ;; times, cycles through the elements in the `kill-ring'. (default nil)
    dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
@@ -361,7 +362,6 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
-  (load custom-file 'noerror)
   (setq evil-want-abbrev-expand-on-insert-exit nil)
   (setq exec-path-from-shell-check-startup-files nil))
 

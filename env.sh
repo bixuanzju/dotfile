@@ -31,7 +31,11 @@ fi
 
 alias rm='trash'
 
-export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="$HOME/.cargo/bin:${HOME}/.local/bin:${PATH}"
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+export PATH="/usr/local/opt/ghc@8.0/bin:$PATH"
 
 # OPAM configuration
 . /Users/jeremybi/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
