@@ -57,7 +57,7 @@ This function should only modify configuration layer settings."
      idris
      rust
      (haskell :variables
-              haskell-completion-backend 'intero)
+              haskell-completion-backend 'dante)
      latex
      bibtex
      ocaml
@@ -73,6 +73,7 @@ This function should only modify configuration layer settings."
      java
      racket
      python
+     evil-commentary
      parinfer)
 
    ;; List of additional packages that will be installed without being
