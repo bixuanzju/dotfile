@@ -58,7 +58,7 @@ This function should only modify configuration layer settings."
      rust
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (haskell :variables
-              haskell-completion-backend 'dante)
+              haskell-completion-backend 'intero)
      latex
      bibtex
      ocaml
@@ -81,7 +81,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(ivy-rich)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -373,6 +373,14 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  (use-package ivy-rich
+    :defer t
+    :init (progn
+            (setq ivy-rich-abbreviate-paths t
+                  ivy-virtual-abbreviate 'full
+                  ivy-rich-switch-buffer-align-virtual-buffer t)
+            (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)))
 
   ;; To suppress perl error
   (exec-path-from-shell-copy-env "LANG")
