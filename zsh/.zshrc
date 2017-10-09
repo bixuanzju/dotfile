@@ -81,4 +81,4 @@ export LC_ALL=en_US.UTF-8
 # local settings override global ones
 [[ -s $HOME/dotfile/env.sh ]] && source $HOME/dotfile/env.sh
 
-# test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+eval `opam config env`

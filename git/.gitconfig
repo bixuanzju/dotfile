@@ -36,3 +36,5 @@
 	trustExitCode = true
 [github]
 	user = bixuanzju
+[magit]
+	hideCampaign = true
