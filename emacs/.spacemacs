@@ -65,7 +65,7 @@ This function should only modify configuration layer settings."
      lua
      sml
      yaml
-     html
+     ;; html
      agda
      csv
      coq
@@ -75,6 +75,8 @@ This function should only modify configuration layer settings."
      racket
      python
      evil-commentary
+     treemacs
+     pdf-tools
      parinfer)
 
    ;; List of additional packages that will be installed without being
@@ -162,7 +164,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka"
-                               :size 15
+                               :size 17
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -379,6 +381,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+
   (use-package ivy-rich
     :defer t
     :init (progn
@@ -391,7 +394,15 @@ before packages are loaded."
     :after spaceline
     :config (spaceline-all-the-icons-theme))
 
-  (spaceline-all-the-icons--setup-anzu)
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view)))
+
+  (setq pdf-sync-forward-display-action
+        '(display-buffer-reuse-window (reusable-frames . t)))
+
+  (setq pdf-sync-backward-display-action
+        '(display-buffer-reuse-window (reusable-frames . t)))
+
 
   ;; To suppress perl error
   (exec-path-from-shell-copy-env "LANG")
@@ -400,11 +411,12 @@ before packages are loaded."
 
   (require 'sedel-mode "~/dotfile/emacs/sedel-mode.el")
 
-  (setq powerline-default-separator 'arrow-fade)
+  ;; (setq powerline-default-separator 'arrow-fade)
 
   (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
 
   (with-eval-after-load 'helm-bibtex
+    (add-to-list 'bibtex-completion-cite-commands "citep")
     (add-to-list 'bibtex-completion-cite-commands "citet"))
 
   (setq vc-follow-symlinks t)
