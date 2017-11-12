@@ -62,7 +62,7 @@ This function should only modify configuration layer settings."
      latex
      bibtex
      ocaml
-     lua
+     ;; lua
      sml
      yaml
      ;; html
@@ -70,20 +70,21 @@ This function should only modify configuration layer settings."
      csv
      coq
      ;; javascript
-     ruby
-     java
+     ;; ruby
+     ;; java
      racket
-     python
-     evil-commentary
+     ;; python
+     ;; evil-commentary
      treemacs
      pdf-tools
+     spacemacs-spaceline
      parinfer)
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(ivy-rich spaceline-all-the-icons)
+   dotspacemacs-additional-packages '(ivy-rich)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -115,6 +116,9 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
    dotspacemacs-elpa-timeout 5
+   ;; If non-nil then verify the signature for downloaded Spacelpa archives.
+   ;; (default nil)
+   dotspacemacs-verify-spacelpa-archives nil
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
@@ -122,7 +126,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-check-for-update nil
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
-   ;; to `emacs-version'. (default nil)
+   ;; to `emacs-version'. (default 'emacs-version)
    dotspacemacs-elpa-subdirectory 'emacs-version
    ;; One of `vim', `emacs' or `hybrid'.
    ;; `hybrid' is like `vim' except that `insert state' is replaced by the
@@ -164,7 +168,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka"
-                               :size 17
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -359,7 +363,7 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil))
+   dotspacemacs-pretty-docs t))
 
 
 (defun dotspacemacs/user-init ()
@@ -368,6 +372,11 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
+  (setq configuration-layer-elpa-archives
+        '(("melpa"    . "melpa.org/packages/")
+          ("org"      . "orgmode.org/elpa/")
+          ("gnu"      . "elpa.gnu.org/packages/")))
 
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
   (load custom-file)
@@ -382,6 +391,11 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
 
+  (add-to-list 'spacemacs-indent-sensitive-modes 'idris-mode)
+  (add-to-list 'spacemacs-indent-sensitive-modes 'agda2-mode)
+  (add-hook 'idris-mode-hook 'turn-on-idris-simple-indent)
+
+
   (use-package ivy-rich
     :defer t
     :init (progn
@@ -389,10 +403,6 @@ before packages are loaded."
                   ivy-virtual-abbreviate 'full
                   ivy-rich-switch-buffer-align-virtual-buffer t)
             (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)))
-
-  (use-package spaceline-all-the-icons
-    :after spaceline
-    :config (spaceline-all-the-icons-theme))
 
   (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
         TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view)))
@@ -452,14 +462,14 @@ before packages are loaded."
   ;; (require 'lean-mode)
 
 
-  ;; (setq purpose-user-mode-purposes '((coq-mode . edit)
-  ;;                                    (tuareg-mode . edit)))
-  ;; (setq purpose-user-name-purposes '(("*goals*" . display)
-  ;;                                    ("*response*" . display)
-  ;;                                    ("*utop*" . repl)))
-  ;; (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
-  ;;                                      ("^\\*terminal<[0-9]>*\\*$" . terminal)))
-  ;; (purpose-compile-user-configuration) ; activates your changes
+  (setq purpose-user-mode-purposes '((coq-mode . edit)
+                                     (tuareg-mode . edit)))
+  (setq purpose-user-name-purposes '(("*goals*" . display)
+                                     ("*response*" . display)
+                                     ("*utop*" . repl)))
+  (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
+                                       ("^\\*terminal<[0-9]>*\\*$" . terminal)))
+  (purpose-compile-user-configuration) ; activates your changes
 
 
   (with-eval-after-load 'org

@@ -39,3 +39,5 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 . /Users/jeremybi/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 eval "$(stack --bash-completion-script stack)"
+
+export PATH="/usr/local/opt/ghc@8.0/bin:$PATH"
