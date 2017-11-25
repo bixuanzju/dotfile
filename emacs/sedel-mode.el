@@ -27,7 +27,7 @@
   :group 'sedel)
 
 (defconst sedel-keywords
-  '("def" "defrec" "type" "inherits" "forall" "if" "then" "else" "let" "in" "new" "trait" "main"))
+  '("override" "letrec" "def" "defrec" "type" "inherits" "forall" "if" "then" "else" "let" "in" "new" "trait" "main"))
 
 (defun sedel--current-line-empty-p ()
   "Non-nil if the current line is empty."
@@ -109,6 +109,28 @@ The current line must be non-empty."
 
     st)
   "Syntax table for `sedel-mode'.")
+
+
+(spacemacs/set-leader-keys-for-major-mode 'sedel-mode
+  ;; Shorthands: rebind the standard evil-mode combinations to the local
+  ;; leader for the keys not used as a prefix below.
+  "r" 'quickrun)
+
+
+(push '("*quickrun*" :position bottom :height 0.3)
+      popwin:special-display-config)
+
+(eval-after-load 'quickrun
+  '(progn
+     (quickrun-add-command "sedel"
+       '((:command . "SEDEL-exe")
+         (:exec . "%c %s")
+         (:tempfile . nil)
+         (:description . "Run SEDEL"))
+       :mode 'sedel-mode)
+     (define-key sedel-mode-map (kbd "C-c C-r") 'quickrun)))
+
+
 
 ;;;###autoload
 (define-derived-mode sedel-mode prog-mode "SEDEL"

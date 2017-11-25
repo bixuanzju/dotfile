@@ -72,7 +72,7 @@ This function should only modify configuration layer settings."
      ;; javascript
      ;; ruby
      ;; java
-     racket
+     ;; racket
      ;; python
      ;; evil-commentary
      treemacs
@@ -84,7 +84,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(ivy-rich)
+   dotspacemacs-additional-packages '(ivy-rich quickrun)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -116,6 +116,10 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    ;; (default 5)
    dotspacemacs-elpa-timeout 5
+   ;; If non-nil then Spacelpa repository is the primary source to install
+   ;; a locked version of packages. If nil then Spacemacs will install the lastest
+   ;; version of packages from MELPA. (default nil)
+   dotspacemacs-use-spacelpa nil
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
    ;; (default nil)
    dotspacemacs-verify-spacelpa-archives nil
@@ -453,8 +457,8 @@ before packages are loaded."
 
   (with-eval-after-load 'agda2-mode
     (spacemacs/set-leader-keys-for-major-mode 'agda2-mode
-      "."   'agda2-normalized-goal-and-context-and-inferred
-      ","   'agda2-normalized-goal-and-context))
+      "g."   'agda2-normalized-goal-and-context-and-inferred
+      "g,"   'agda2-normalized-goal-and-context))
 
   ;; You need to modify the following two lines:
   ;; (setq lean-rootdir "~/Downloads/lean-3.1.0-darwin")
