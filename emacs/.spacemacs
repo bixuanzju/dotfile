@@ -377,10 +377,8 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
-  (setq configuration-layer-elpa-archives
-        '(("melpa"    . "melpa.org/packages/")
-          ("org"      . "orgmode.org/elpa/")
-          ("gnu"      . "elpa.gnu.org/packages/")))
+  ;; (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer-elpa-archives)
+  ;; (push '(use-package . "melpa-stable") package-pinned-packages)
 
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
   (load custom-file)
@@ -421,9 +419,36 @@ before packages are loaded."
   ;; To suppress perl error
   (exec-path-from-shell-copy-env "LANG")
 
-  (require 'ott-mode "~/scratch/ott/emacs/ott-mode.el")
+  (use-package ott-mode
+    :load-path "~/scratch/ott/emacs/"
+    :mode "\\.ott\\'")
 
-  (require 'sedel-mode "~/dotfile/emacs/sedel-mode.el")
+
+  (use-package quickrun
+    :commands quickrun
+    :config
+    (progn
+      (quickrun-add-command "sedel"
+        '((:command . "SEDEL-exe")
+          (:exec . "%c %s")
+          (:tempfile . nil)
+          (:description . "Run SEDEL"))
+        :mode 'sedel-mode)
+
+      (push '("*quickrun*" :position bottom :height 0.3)
+            popwin:special-display-config)))
+
+  (use-package sedel-mode
+    :mode "\\.sl\\'"
+    :bind (:map sedel-mode-map
+                ("C-c C-r" . quickrun))
+    :load-path "~/Projects/disjoint-polymorphism/impl/elisp/")
+
+
+  (spacemacs/set-leader-keys-for-major-mode 'sedel-mode
+    ;; Shorthands: rebind the standard evil-mode combinations to the local
+    ;; leader for the keys not used as a prefix below.
+    "r" 'quickrun)
 
   ;; (setq powerline-default-separator 'arrow-fade)
 
