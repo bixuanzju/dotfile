@@ -77,6 +77,7 @@ This function should only modify configuration layer settings."
      ;; evil-commentary
      treemacs
      pdf-tools
+     javascript
      spacemacs-spaceline
      parinfer)
 
@@ -84,7 +85,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(ivy-rich quickrun)
+   dotspacemacs-additional-packages '(ivy-rich quickrun hledger-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -314,7 +315,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-folding-method 'evil
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -395,7 +396,49 @@ before packages are loaded."
 
   (add-to-list 'spacemacs-indent-sensitive-modes 'idris-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'agda2-mode)
+  (add-to-list 'spacemacs-indent-sensitive-modes 'sedel-mode)
   (add-hook 'idris-mode-hook 'turn-on-idris-simple-indent)
+
+  (use-package hledger-mode
+    :mode ("\\.journal\\'" "\\.hledger\\'")
+    :preface
+    (defun hledger/next-entry ()
+      "Move to next entry and pulse."
+      (interactive)
+      (hledger-next-or-new-entry)
+      (hledger-pulse-momentary-current-entry))
+    (defun hledger/prev-entry ()
+      "Move to last entry and pulse."
+      (interactive)
+      (hledger-backward-entry)
+      (hledger-pulse-momentary-current-entry))
+
+
+    :bind (("C-c j" . hledger-run-command)
+           :map hledger-mode-map
+           ("M-p" . hledger/prev-entry)
+           ("M-n" . hledger/next-entry))
+
+    :init
+    (progn
+      (spacemacs/set-leader-keys-for-major-mode 'hledger-mode
+        "r" 'hledger-run-command
+        "a" 'hledger-jentry
+        "b" 'hledger-edit-amount)
+      (add-to-list 'evil-emacs-state-modes 'hledger-view-mode)
+      (setq hledger-show-expanded-report nil)
+      (setq hledger-currency-string "HKD"))
+    :config
+    (spacemacs|add-company-backends
+      :backends hledger-company
+      :modes hledger-mode))
+
+  (use-package hledger-input
+    :bind (("C-c e" . hledger-capture))
+    :config
+    (setq hledger-input-buffer-height 20)
+    (add-hook 'hledger-input-post-commit-hook #'hledger-show-new-balances)
+    (add-hook 'hledger-input-mode-hook #'auto-fill-mode))
 
 
   (use-package ivy-rich
@@ -443,6 +486,11 @@ before packages are loaded."
     :bind (:map sedel-mode-map
                 ("C-c C-r" . quickrun))
     :load-path "~/Projects/disjoint-polymorphism/impl/elisp/")
+
+
+  ;; (use-package evil-smartparens
+  ;;   :config
+  ;;   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
 
 
   (spacemacs/set-leader-keys-for-major-mode 'sedel-mode
