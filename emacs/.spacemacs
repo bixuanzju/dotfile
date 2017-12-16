@@ -70,14 +70,12 @@ This function should only modify configuration layer settings."
      csv
      coq
      ;; javascript
-     ;; ruby
+     ruby
      ;; java
      ;; racket
-     ;; python
-     ;; evil-commentary
+     python
      treemacs
      pdf-tools
-     javascript
      spacemacs-spaceline
      parinfer)
 
@@ -368,7 +366,7 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs t))
+   dotspacemacs-pretty-docs nil))
 
 
 (defun dotspacemacs/user-init ()
@@ -426,6 +424,7 @@ before packages are loaded."
         "a" 'hledger-jentry
         "b" 'hledger-edit-amount)
       (add-to-list 'evil-emacs-state-modes 'hledger-view-mode)
+      (setq hledger-jfile "~/Documents/personal/money.journal")
       (setq hledger-show-expanded-report nil)
       (setq hledger-currency-string "HKD"))
     :config
