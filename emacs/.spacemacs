@@ -73,7 +73,7 @@ This function should only modify configuration layer settings."
      ruby
      ;; java
      ;; racket
-     python
+     ;; python
      treemacs
      pdf-tools
      spacemacs-spaceline
@@ -83,7 +83,7 @@ This function should only modify configuration layer settings."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(ivy-rich quickrun hledger-mode)
+   dotspacemacs-additional-packages '(quickrun hledger-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -439,15 +439,6 @@ before packages are loaded."
     (add-hook 'hledger-input-post-commit-hook #'hledger-show-new-balances)
     (add-hook 'hledger-input-mode-hook #'auto-fill-mode))
 
-
-  (use-package ivy-rich
-    :defer t
-    :init (progn
-            (setq ivy-rich-abbreviate-paths t
-                  ivy-virtual-abbreviate 'full
-                  ivy-rich-switch-buffer-align-virtual-buffer t)
-            (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)))
-
   (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
         TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view)))
 
@@ -471,7 +462,7 @@ before packages are loaded."
     :config
     (progn
       (quickrun-add-command "sedel"
-        '((:command . "SEDEL-exe")
+        '((:command . "sedel")
           (:exec . "%c %s")
           (:tempfile . nil)
           (:description . "Run SEDEL"))
