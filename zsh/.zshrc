@@ -101,8 +101,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias rm='trash'
 
-
 export PATH="${HOME}/.local/bin:${PATH}"
 
 # Why nix doesn't know?
-export COQPATH="/nix/store/z2n42apffqri4dkckz9pp1b434bvphig-coq8.7-tlc-20171206/lib/coq/8.7/user-contrib:/nix/store/cmd5vkd2d25hd5wnx6zpand1b2b1lzvp-metalib-8.7-20170713/lib/coq/8.7/user-contrib"
+export COQPATH="/nix/store/cmd5vkd2d25hd5wnx6zpand1b2b1lzvp-metalib-8.7-20170713/lib/coq/8.7/user-contrib"

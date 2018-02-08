@@ -39,7 +39,10 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
+     ;; (helm :variables
+     ;;       helm-enable-auto-resize t
+     ;;       helm-no-header t)
+     (ivy :variables ivy-enable-advanced-buffer-information t)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-private-snippets-directory "~/dotfile/emacs/snippets/")
@@ -64,7 +67,7 @@ This function should only modify configuration layer settings."
      (haskell :variables
               haskell-enable-hindent t
               haskell-completion-backend 'intero)
-     latex
+     (latex :variables latex-enable-auto-fill nil)
      bibtex
      ocaml
      ;; lua
@@ -129,9 +132,15 @@ It should only modify the values of Spacemacs settings."
    ;; (default 5)
    dotspacemacs-elpa-timeout 5
 
+   ;; Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
+   ;; This is an advanced option and should not be changed unless you suspect
+   ;; performance issues due to garbage collection operations.
+   ;; (default '(100000000 0.1))
+   dotspacemacs-gc-cons '(100000000 0.1)
+
    ;; If non-nil then Spacelpa repository is the primary source to install
-   ;; a locked version of packages. If nil then Spacemacs will install the lastest
-   ;; version of packages from MELPA. (default nil)
+   ;; a locked version of packages. If nil then Spacemacs will install the
+   ;; lastest version of packages from MELPA. (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
@@ -200,7 +209,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(all-the-icons :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(all-the-icons :separator none :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -410,11 +419,6 @@ It should only modify the values of Spacemacs settings."
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
    dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
 
-   ;; The default package repository used if no explicit repository has been
-   ;; specified with an installed package.
-   ;; Not used for now. (default nil)
-   dotspacemacs-default-package-repository nil
-
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
    ;; %t - `projectile-project-name'
@@ -555,6 +559,8 @@ before packages are loaded."
       (push '("*quickrun*" :position bottom :height 0.3)
             popwin:special-display-config)))
 
+  ;; (use-package nix-mode)
+
   (use-package sedel-mode
     :mode "\\.sl\\'"
     :bind (:map sedel-mode-map
@@ -571,8 +577,6 @@ before packages are loaded."
     ;; Shorthands: rebind the standard evil-mode combinations to the local
     ;; leader for the keys not used as a prefix below.
     "r" 'quickrun)
-
-  ;; (setq powerline-default-separator 'arrow-fade)
 
   (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
 
@@ -641,7 +645,7 @@ before packages are loaded."
     (setq org-priority-faces '((?A . (:foreground "OliveDrab" :weight bold))
                                (?B . (:foreground "LightSteelBlue"))
                                (?C . (:foreground "#F0DFAF"))))
-    (setq org-agenda-files '("~/Dropbox/Research/todo.org"))
+    (setq org-agenda-files '("~/Documents/Research/todo.org"))
     ;;don't show tasks as scheduled if they are already shown as a deadline
     (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
     ;;don't give awarning colour to tasks with impending deadlines
@@ -678,9 +682,9 @@ before packages are loaded."
             (search category-keep))))
 
     (setq org-capture-templates
-          '(("t" "todo" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
+          '(("t" "todo" entry (file+headline "~/Documents/Research/todo.org" "Tasks")
              "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
-            ("n" "task" entry (file+headline "~/Dropbox/Research/todo.org" "Tasks")
+            ("n" "task" entry (file+headline "~/Documents/Research/todo.org" "Tasks")
              "* TODO %?")))))
 
 ;; Do not write anything past this comment. This is where Emacs will
