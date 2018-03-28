@@ -69,7 +69,7 @@ This function should only modify configuration layer settings."
               haskell-completion-backend 'intero)
      (latex :variables latex-enable-auto-fill nil)
      bibtex
-     ocaml
+     ;; ocaml
      ;; lua
      sml
      yaml
@@ -79,13 +79,12 @@ This function should only modify configuration layer settings."
      coq
      ;; javascript
      ruby
-     ;; java
+     java
      ;; racket
      ;; python
      treemacs
      ;; pdf-tools
      ;; nixos
-     ;; spacemacs-spaceline
      parinfer)
 
    ;; List of additional packages that will be installed without being
@@ -140,7 +139,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
-   ;; lastest version of packages from MELPA. (default nil)
+   ;; latest version of packages from MELPA. (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
@@ -410,9 +409,12 @@ It should only modify the values of Spacemacs settings."
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
 
+   ;; If non-nil, start an Emacs server if one is not already running.
+   dotspacemacs-enable-server t
+
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
 
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
@@ -479,10 +481,18 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  ;; Define a function or use a lambda of the same signature
+  (defun popup-handler (app-name window-title x y w h)
+    (setq ea-on nil))
+
+  ;; Hook your function
+  (add-hook 'ea-popup-hook 'popup-handler)
+
+  (setq winum-scope 'frame-local)
+
   (add-to-list 'spacemacs-indent-sensitive-modes 'idris-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'agda2-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'sedel-mode)
-  (add-hook 'idris-mode-hook 'turn-on-idris-simple-indent)
 
   (use-package hledger-mode
     :mode ("\\.journal\\'" "\\.hledger\\'")
