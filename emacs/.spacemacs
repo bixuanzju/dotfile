@@ -67,6 +67,7 @@ This function should only modify configuration layer settings."
      (haskell :variables
               haskell-enable-hindent t
               haskell-completion-backend 'intero)
+     lsp
      (latex :variables latex-enable-auto-fill nil)
      bibtex
      ;; ocaml
