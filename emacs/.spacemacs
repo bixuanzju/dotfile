@@ -40,8 +40,7 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; (helm :variables
-     ;;       helm-enable-auto-resize t
-     ;;       helm-no-header t)
+     ;;       helm-enable-auto-resize t)
      (ivy :variables ivy-enable-advanced-buffer-information t)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
@@ -62,7 +61,7 @@ This function should only modify configuration layer settings."
      version-control
      osx
      idris
-     ;; rust
+     rust
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (haskell :variables
               haskell-enable-hindent t
@@ -95,7 +94,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(quickrun hledger-mode)
+   dotspacemacs-additional-packages '(quickrun hledger-mode pomidor)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -470,6 +469,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   ;; (setq ispell-program-name "aspell")
 
+
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
   (load custom-file)
   (setq evil-want-abbrev-expand-on-insert-exit nil)
@@ -482,10 +482,20 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (use-package pomidor
+    :init
+    (progn
+      (add-to-list 'evil-emacs-state-modes 'pomidor-mode)
+      (setq pomidor-play-sound-file
+          (lambda (file)
+            (start-process "my-pomidor-play-sound" nil
+                           "afplay"
+                           file)))))
+
+  ;; Emacs Everywhere
   ;; Define a function or use a lambda of the same signature
   (defun popup-handler (app-name window-title x y w h)
     (setq ea-on nil))
-
   ;; Hook your function
   (add-hook 'ea-popup-hook 'popup-handler)
 
