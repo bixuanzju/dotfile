@@ -61,12 +61,12 @@ This function should only modify configuration layer settings."
      version-control
      osx
      idris
-     rust
+     ;; rust
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (haskell :variables
               haskell-enable-hindent t
               haskell-completion-backend 'intero)
-     lsp
+     ;; lsp
      (latex :variables latex-enable-auto-fill nil)
      bibtex
      ;; ocaml
@@ -79,7 +79,7 @@ This function should only modify configuration layer settings."
      coq
      ;; javascript
      ruby
-     java
+     ;; java
      ;; racket
      ;; python
      treemacs
@@ -94,7 +94,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(quickrun hledger-mode pomidor)
+   dotspacemacs-additional-packages '(quickrun hledger-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -119,6 +119,25 @@ It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   ;; If non-nil then enable support for the portable dumper. You'll need
+   ;; to compile Emacs 27 from source following the instructions in file
+   ;; EXPERIMENTAL.org at to root of the git repository.
+   ;; (default nil)
+   dotspacemacs-enable-emacs-pdumper nil
+
+   ;; File path pointing to emacs 27.1 executable compiled with support
+   ;; for the portable dumper (this is currently the branch pdumper).
+   ;; (default "emacs-27.0.50")
+   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
+
+   ;; Name of the Spacemacs dump file. This is the file will be created by the
+   ;; portable dumper in the cache directory under dumps sub-directory.
+   ;; To load it when starting Emacs add the parameter `--dump-file'
+   ;; when invoking Emacs 27.1 executable on the command line, for instance:
+   ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
+   ;; (default spacemacs.pdmp)
+   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
@@ -208,7 +227,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(all-the-icons :separator none :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator alternate :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -389,7 +408,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -410,6 +429,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-highlight-delimiters 'all
 
    ;; If non-nil, start an Emacs server if one is not already running.
+   ;; (default nil)
    dotspacemacs-enable-server t
 
    ;; If non-nil, advise quit functions to keep server open when quitting.
@@ -467,7 +487,7 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
-  ;; (setq ispell-program-name "aspell")
+  (setq ispell-program-name "aspell")
 
 
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
@@ -475,22 +495,18 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq evil-want-abbrev-expand-on-insert-exit nil)
   (setq exec-path-from-shell-check-startup-files nil))
 
+(defun dotspacemacs/user-load ()
+  "Library to load while dumping.
+This function is called while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included
+in the dump.")
+
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
 This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-
-  (use-package pomidor
-    :init
-    (progn
-      (add-to-list 'evil-emacs-state-modes 'pomidor-mode)
-      (setq pomidor-play-sound-file
-          (lambda (file)
-            (start-process "my-pomidor-play-sound" nil
-                           "afplay"
-                           file)))))
 
   ;; Emacs Everywhere
   ;; Define a function or use a lambda of the same signature
@@ -562,7 +578,7 @@ before packages are loaded."
   (exec-path-from-shell-copy-env "COQPATH")
 
   (use-package ott-mode
-    :load-path "~/scratch/ott/emacs/"
+    :load-path "/Users/jeremybi/.nix-profile/share/emacs/site-lisp"
     :mode "\\.ott\\'")
 
 
