@@ -182,7 +182,10 @@ It should only modify the values of Spacemacs settings."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style '(vim :variables
+                                    vim-style-visual-feedback t
+                                    vim-style-remap-Y-to-y$ t
+                                    vim-style-retain-visual-state-on-shift t)
 
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -270,21 +273,6 @@ It should only modify the values of Spacemacs settings."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
 
-   ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ t
-
-   ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
-   ;; there. (default t)
-   dotspacemacs-retain-visual-state-on-shift t
-
-   ;; If non-nil, `J' and `K' move lines up and down when in visual mode.
-   ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
-
-   ;; If non-nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
-   ;; (default nil)
-   dotspacemacs-ex-substitute-global nil
-
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
 
@@ -313,23 +301,6 @@ It should only modify the values of Spacemacs settings."
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
-
-   ;; If non-nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize nil
-
-   ;; if non-nil, the helm header is hidden when there is only one source.
-   ;; (default nil)
-   dotspacemacs-helm-no-header nil
-
-   ;; define the position to display `helm', options are `bottom', `top',
-   ;; `left', or `right'. (default 'bottom)
-   dotspacemacs-helm-position 'bottom
-
-   ;; Controls fuzzy matching in helm. If set to `always', force fuzzy matching
-   ;; in all non-asynchronous sources. If set to `source', preserve individual
-   ;; source settings. Else, disable fuzzy matching in all sources.
-   ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
 
    ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
    ;; `p' several times cycles through the elements in the `kill-ring'.
@@ -493,13 +464,15 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
   (load custom-file)
   (setq evil-want-abbrev-expand-on-insert-exit nil)
-  (setq exec-path-from-shell-check-startup-files nil))
+  ;; (setq exec-path-from-shell-check-startup-files nil)
+  )
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included
-in the dump.")
+in the dump."
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -574,8 +547,8 @@ before packages are loaded."
 
 
   ;; To suppress perl error
-  (exec-path-from-shell-copy-env "LANG")
-  (exec-path-from-shell-copy-env "COQPATH")
+  ;; (exec-path-from-shell-copy-env "LANG")
+  ;; (exec-path-from-shell-copy-env "COQPATH")
 
   (use-package ott-mode
     :load-path "/Users/jeremybi/.nix-profile/share/emacs/site-lisp"
@@ -596,18 +569,11 @@ before packages are loaded."
       (push '("*quickrun*" :position bottom :height 0.3)
             popwin:special-display-config)))
 
-  ;; (use-package nix-mode)
-
   (use-package sedel-mode
     :mode "\\.sl\\'"
     :bind (:map sedel-mode-map
                 ("C-c C-r" . quickrun))
-    :load-path "~/Projects/first-class-trait/elisp/")
-
-
-  ;; (use-package evil-smartparens
-  ;;   :config
-  ;;   (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+    :load-path "~/Projects/first-class-trait/impl/elisp/")
 
 
   (spacemacs/set-leader-keys-for-major-mode 'sedel-mode
@@ -648,20 +614,15 @@ before packages are loaded."
       "g."   'agda2-normalized-goal-and-context-and-inferred
       "g,"   'agda2-normalized-goal-and-context))
 
-  ;; You need to modify the following two lines:
-  ;; (setq lean-rootdir "~/Downloads/lean-3.1.0-darwin")
-  ;; (setq load-path (cons "~/Downloads/lean-3.1.0-darwin/share/emacs/site-lisp/lean" load-path))
-  ;; (require 'lean-mode)
 
-
-  (setq purpose-user-mode-purposes '((coq-mode . edit)
-                                     (tuareg-mode . edit)))
-  (setq purpose-user-name-purposes '(("*goals*" . display)
-                                     ("*response*" . display)
-                                     ("*utop*" . repl)))
-  (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
-                                       ("^\\*terminal<[0-9]>*\\*$" . terminal)))
-  (purpose-compile-user-configuration) ; activates your changes
+  ;; (setq purpose-user-mode-purposes '((coq-mode . edit)
+  ;;                                    (tuareg-mode . edit)))
+  ;; (setq purpose-user-name-purposes '(("*goals*" . display)
+  ;;                                    ("*response*" . display)
+  ;;                                    ("*utop*" . repl)))
+  ;; (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
+  ;;                                      ("^\\*terminal<[0-9]>*\\*$" . terminal)))
+  ;; (purpose-compile-user-configuration) ; activates your changes
 
 
   (with-eval-after-load 'org
