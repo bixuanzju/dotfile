@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -39,9 +39,8 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; (helm :variables
-     ;;       helm-enable-auto-resize t)
-     (ivy :variables ivy-enable-advanced-buffer-information t)
+     helm
+     ;; (ivy :variables ivy-enable-advanced-buffer-information t)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-private-snippets-directory "~/dotfile/emacs/snippets/")
@@ -65,11 +64,11 @@ This function should only modify configuration layer settings."
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (haskell :variables
               haskell-enable-hindent t
-              haskell-completion-backend 'intero)
+              haskell-completion-backend 'dante)
      ;; lsp
      (latex :variables latex-enable-auto-fill nil)
      bibtex
-     ;; ocaml
+     ocaml
      ;; lua
      sml
      yaml
@@ -78,7 +77,7 @@ This function should only modify configuration layer settings."
      csv
      coq
      ;; javascript
-     ruby
+     ;; ruby
      ;; java
      ;; racket
      ;; python
@@ -302,9 +301,9 @@ It should only modify the values of Spacemacs settings."
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
 
-   ;; If non-nil, the paste transient-state is enabled. While enabled, pressing
-   ;; `p' several times cycles through the elements in the `kill-ring'.
-   ;; (default nil)
+   ;; If non-nil, the paste transient-state is enabled. While enabled, after you
+   ;; paste something, pressing `C-j' and `C-k' several times cycles through the
+   ;; elements in the `kill-ring'. (default nil)
    dotspacemacs-enable-paste-transient-state nil
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
@@ -381,7 +380,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers nil
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
