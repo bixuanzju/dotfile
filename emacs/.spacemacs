@@ -39,7 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
+     ivy
      ;; (ivy :variables ivy-enable-advanced-buffer-information t)
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
@@ -64,7 +64,7 @@ This function should only modify configuration layer settings."
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (haskell :variables
               haskell-enable-hindent t
-              haskell-completion-backend 'dante)
+              haskell-completion-backend 'intero)
      ;; lsp
      (latex :variables latex-enable-auto-fill nil)
      bibtex
@@ -81,9 +81,10 @@ This function should only modify configuration layer settings."
      ;; java
      ;; racket
      ;; python
-     treemacs
+     ;; treemacs
      ;; pdf-tools
      ;; nixos
+     ;; themes-megapack
      parinfer)
 
    ;; List of additional packages that will be installed without being
@@ -93,7 +94,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(quickrun hledger-mode)
+   dotspacemacs-additional-packages '(quickrun hledger-mode doom-themes)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -219,17 +220,18 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(zenburn
+                         doom-one
                          spacemacs-dark
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
-   ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
-   ;; are spaceline themes. `vanilla' is default Emacs mode-line. `custom' is a
-   ;; user defined themes, refer to the DOCUMENTATION.org for more info on how
-   ;; to create your own spaceline theme. Value can be a symbol or list with\
-   ;; additional properties.
+   ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
+   ;; first three are spaceline themes. `doom' is the doom-emacs mode-line.
+   ;; `vanilla' is default Emacs mode-line. `custom' is a user defined themes,
+   ;; refer to the DOCUMENTATION.org for more info on how to create your own
+   ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator alternate :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -237,7 +239,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Iosevka"
+   dotspacemacs-default-font '("PragmataPro"
                                :size 15
                                :weight normal
                                :width normal)
@@ -465,7 +467,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -474,13 +477,11 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
-  (setq ispell-program-name "aspell")
-
+  ;; (setq ispell-program-name "aspell")
 
   (setq custom-file "~/dotfile/emacs/emacs-custom.el")
   (load custom-file)
   (setq evil-want-abbrev-expand-on-insert-exit nil)
-  ;; (setq exec-path-from-shell-check-startup-files nil)
   )
 
 (defun dotspacemacs/user-load ()
@@ -497,6 +498,17 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
+
+  ;; (use-package langtool
+  ;;   :preface
+  ;;   (setq langtool-language-tool-jar "~/Downloads/LanguageTool-4.2/languagetool-commandline.jar"))
+
+
   ;; Emacs Everywhere
   ;; Define a function or use a lambda of the same signature
   (defun popup-handler (app-name window-title x y w h)
@@ -509,6 +521,9 @@ before packages are loaded."
   (add-to-list 'spacemacs-indent-sensitive-modes 'idris-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'agda2-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'sedel-mode)
+
+
+  (add-to-list 'auto-mode-alist '("\\.mngtex\\'" . tex-mode))
 
   (use-package hledger-mode
     :mode ("\\.journal\\'" "\\.hledger\\'")
@@ -576,7 +591,7 @@ before packages are loaded."
     :config
     (progn
       (quickrun-add-command "sedel"
-        '((:command . "sedel")
+        '((:command . "sedel-exe")
           (:exec . "%c %s")
           (:tempfile . nil)
           (:description . "Run SEDEL"))

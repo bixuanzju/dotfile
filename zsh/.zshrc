@@ -104,7 +104,6 @@ alias rm='trash'
 export PATH="${HOME}/.local/bin:/usr/local/sbin:${PATH}"
 
 # Why nix doesn't know?
-export COQPATH="/nix/store/wx2f14v1qk8ivf6skrma2lc9gbzvss3b-coq8.7-equations-1.0/lib/coq/8.7/user-contrib:/nix/store/zpxsqgpap5y9rn0ybsf8wki3jz3snikv-metalib-8.7-20170713/lib/coq/8.7/user-contrib:/nix/store/m12lk4w90vdgp9zzxja9lx4r7v6gz1dd-coq8.7-tlc-20171206/lib/coq/8.7/user-contrib"
 
 
 alias ec="emacsclient -c -n"
