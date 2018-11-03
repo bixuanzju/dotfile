@@ -21,20 +21,10 @@
 [push]
 	default         = simple
 	
-[merge]
-	tool		= diffmerge
-	
-[diff]
-	tool		= diffmerge
-	
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [github]
 	user = bixuanzju
 [magit]
 	hideCampaign = true
+
+[url "git://github.com/ghc/packages-"]
+	insteadOf = git://github.com/ghc/packages/

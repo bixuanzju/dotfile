@@ -76,6 +76,7 @@ This function should only modify configuration layer settings."
      agda
      csv
      coq
+     multiple-cursors
      ;; javascript
      ;; ruby
      ;; java
@@ -94,7 +95,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(quickrun hledger-mode doom-themes)
+   dotspacemacs-additional-packages '(lean-mode company-lean quickrun hledger-mode doom-themes)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -219,8 +220,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
-                         doom-one
+   dotspacemacs-themes '(doom-one
+                         zenburn
                          spacemacs-dark
                          spacemacs-light)
 
@@ -240,7 +241,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("PragmataPro"
-                               :size 15
+                               :size 17
                                :weight normal
                                :width normal)
 
@@ -498,6 +499,16 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  ;; (spacemacs|add-company-backends
+  ;;   :backends company-lsp
+  ;;   :modes haskell-mode)
+
+  ;; (use-package lsp-haskell
+  ;;   :config
+  ;;   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+  ;;   (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;;   (spacemacs/lsp-bind-keys-for-mode 'haskell-mode))
+
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
 
@@ -508,6 +519,7 @@ before packages are loaded."
   ;;   :preface
   ;;   (setq langtool-language-tool-jar "~/Downloads/LanguageTool-4.2/languagetool-commandline.jar"))
 
+  (use-package dune)
 
   ;; Emacs Everywhere
   ;; Define a function or use a lambda of the same signature
