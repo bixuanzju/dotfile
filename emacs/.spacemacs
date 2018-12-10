@@ -65,7 +65,6 @@ This function should only modify configuration layer settings."
      (haskell :variables
               haskell-enable-hindent t
               haskell-completion-backend 'intero)
-     ;; lsp
      (latex :variables latex-enable-auto-fill nil)
      bibtex
      ocaml
@@ -78,6 +77,7 @@ This function should only modify configuration layer settings."
      coq
      multiple-cursors
      ;; javascript
+     ;; lsp
      ;; ruby
      ;; java
      ;; racket
@@ -95,7 +95,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(lean-mode company-lean quickrun hledger-mode doom-themes)
+   dotspacemacs-additional-packages '(lean-mode company-lean quickrun hledger-mode doom-themes lsp-haskell)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -220,8 +220,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-one
-                         zenburn
+   dotspacemacs-themes '(zenburn
+                         doom-one
                          spacemacs-dark
                          spacemacs-light)
 
@@ -240,7 +240,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("PragmataPro"
+   dotspacemacs-default-font '("Fira Code"
                                :size 17
                                :weight normal
                                :width normal)
@@ -505,9 +505,11 @@ before packages are loaded."
 
   ;; (use-package lsp-haskell
   ;;   :config
-  ;;   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+  ;;   (add-hook 'haskell-mode-hook #'lsp)
   ;;   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  ;;   (spacemacs/lsp-bind-keys-for-mode 'haskell-mode))
+  ;;   ;; (setq lsp-ui-sideline-enable nil)
+  ;;   (spacemacs|add-company-backends :backends company-lsp :modes haskell-mode)
+  ;;   )
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
