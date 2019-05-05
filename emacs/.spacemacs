@@ -64,7 +64,7 @@ This function should only modify configuration layer settings."
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      (haskell :variables
               haskell-enable-hindent t
-              haskell-completion-backend 'intero)
+              haskell-completion-backend 'lsp)
      (latex :variables latex-enable-auto-fill nil)
      bibtex
      ocaml
@@ -72,17 +72,17 @@ This function should only modify configuration layer settings."
      sml
      yaml
      ;; html
-     agda
+     ;; agda
      csv
      coq
      multiple-cursors
      ;; javascript
-     ;; lsp
+     lsp
      ;; ruby
      ;; java
      ;; racket
      ;; python
-     ;; treemacs
+     treemacs
      ;; pdf-tools
      ;; nixos
      ;; themes-megapack
@@ -468,8 +468,7 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env)
-  )
+  (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -499,18 +498,6 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  ;; (spacemacs|add-company-backends
-  ;;   :backends company-lsp
-  ;;   :modes haskell-mode)
-
-  ;; (use-package lsp-haskell
-  ;;   :config
-  ;;   (add-hook 'haskell-mode-hook #'lsp)
-  ;;   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  ;;   ;; (setq lsp-ui-sideline-enable nil)
-  ;;   (spacemacs|add-company-backends :backends company-lsp :modes haskell-mode)
-  ;;   )
-
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
 
@@ -521,7 +508,7 @@ before packages are loaded."
   ;;   :preface
   ;;   (setq langtool-language-tool-jar "~/Downloads/LanguageTool-4.2/languagetool-commandline.jar"))
 
-  (use-package dune)
+  ;; (use-package dune)
 
   ;; Emacs Everywhere
   ;; Define a function or use a lambda of the same signature
@@ -535,7 +522,6 @@ before packages are loaded."
   (add-to-list 'spacemacs-indent-sensitive-modes 'idris-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'agda2-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'sedel-mode)
-
 
   (add-to-list 'auto-mode-alist '("\\.mngtex\\'" . tex-mode))
 
@@ -595,10 +581,9 @@ before packages are loaded."
   ;; (exec-path-from-shell-copy-env "LANG")
   ;; (exec-path-from-shell-copy-env "COQPATH")
 
-  (use-package ott-mode
-    :load-path "/Users/jeremybi/.nix-profile/share/emacs/site-lisp"
-    :mode "\\.ott\\'")
-
+  ;; (use-package ott-mode
+  ;;   :load-path "/Users/jeremybi/.nix-profile/share/emacs/site-lisp"
+  ;;   :mode "\\.ott\\'")
 
   (use-package quickrun
     :commands quickrun
@@ -633,14 +618,6 @@ before packages are loaded."
     (add-to-list 'bibtex-completion-cite-commands "citet"))
 
   (setq vc-follow-symlinks t)
-
-  (with-eval-after-load 'intero
-    (with-eval-after-load 'flycheck
-      (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
-
-  ;; (add-hook 'dante-mode-hook
-  ;;           '(lambda () (flycheck-add-next-checker 'haskell-dante
-  ;;                                                  '(warning . haskell-hlint))))
 
   (spacemacs/set-leader-keys
     "oa" 'org-agenda-list
