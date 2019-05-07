@@ -67,7 +67,7 @@ This function should only modify configuration layer settings."
               haskell-completion-backend 'lsp)
      (latex :variables latex-enable-auto-fill nil)
      bibtex
-     ocaml
+     ;; ocaml
      ;; lua
      sml
      yaml
@@ -95,7 +95,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(lean-mode company-lean quickrun hledger-mode doom-themes lsp-haskell)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -585,19 +585,17 @@ before packages are loaded."
   ;;   :load-path "/Users/jeremybi/.nix-profile/share/emacs/site-lisp"
   ;;   :mode "\\.ott\\'")
 
-  (use-package quickrun
-    :commands quickrun
-    :config
-    (progn
-      (quickrun-add-command "sedel"
-        '((:command . "sedel-exe")
-          (:exec . "%c %s")
-          (:tempfile . nil)
-          (:description . "Run SEDEL"))
-        :mode 'sedel-mode)
+  ;; (use-package quickrun
+  ;;   (progn
+  ;;     (quickrun-add-command "sedel"
+  ;;       '((:command . "sedel-exe")
+  ;;         (:exec . "%c %s")
+  ;;         (:tempfile . nil)
+  ;;         (:description . "Run SEDEL"))
+  ;;       :mode 'sedel-mode)
 
-      (push '("*quickrun*" :position bottom :height 0.3)
-            popwin:special-display-config)))
+  ;;     (push '("*quickrun*" :position bottom :height 0.3)
+  ;;           popwin:special-display-config)))
 
   (use-package sedel-mode
     :mode "\\.sl\\'"
