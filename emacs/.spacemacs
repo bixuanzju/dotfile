@@ -47,7 +47,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      (git :variables
           git-magit-status-fullscreen t)
-     (markdown :variables markdown-live-preview-engine 'vmd)
+     markdown
      org
      (shell :variables
             shell-default-shell 'multi-term
@@ -77,7 +77,8 @@ This function should only modify configuration layer settings."
      coq
      multiple-cursors
      ;; javascript
-     lsp
+     (lsp :variables
+          lsp-ui-sideline-enable nil)
      ;; ruby
      ;; java
      ;; racket
@@ -126,10 +127,10 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
 
-   ;; File path pointing to emacs 27.1 executable compiled with support
-   ;; for the portable dumper (this is currently the branch pdumper).
-   ;; (default "emacs-27.0.50")
-   dotspacemacs-emacs-pdumper-executable-file "emacs-27.0.50"
+   ;; Name of executable file pointing to emacs 27+. This executable must be
+   ;; in your PATH.
+   ;; (default "emacs")
+   dotspacemacs-emacs-pdumper-executable-file "emacs"
 
    ;; Name of the Spacemacs dump file. This is the file will be created by the
    ;; portable dumper in the cache directory under dumps sub-directory.
@@ -210,6 +211,11 @@ It should only modify the values of Spacemacs settings."
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
 
+   ;; Default major mode for a new empty buffer. Possible values are mode
+   ;; names such as `text-mode'; and `nil' to use Fundamental mode.
+   ;; (default `text-mode')
+   dotspacemacs-new-empty-buffer-major-mode 'text-mode
+
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
 
@@ -238,10 +244,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
 
-   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
-   ;; quickly tweak the mode-line size to make separators look not too crappy.
+   ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("Fira Code"
-                               :size 17
+                               :size 17.0
                                :weight normal
                                :width normal)
 
@@ -344,6 +349,11 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil) (Emacs 24.4+ only)
    dotspacemacs-maximized-at-startup nil
 
+   ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
+   ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
+   ;; borderless fullscreen. (default nil)
+   dotspacemacs-undecorated-at-startup nil
+
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -371,10 +381,14 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-smooth-scrolling t
 
    ;; Control line numbers activation.
-   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
-   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
+   ;; `prog-mode' and `text-mode' derivatives. If set to `relative', line
+   ;; numbers are relative. If set to `visual', line numbers are also relative,
+   ;; but lines are only visual lines are counted. For example, folded lines
+   ;; will not be counted and wrapped lines are counted as multiple lines.
    ;; This variable can also be set to a property list for finer control:
    ;; '(:relative nil
+   ;;   :visual nil
    ;;   :disabled-for-modes dired-mode
    ;;                       doc-view-mode
    ;;                       markdown-mode
@@ -382,6 +396,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       pdf-view-mode
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
+   ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
    dotspacemacs-line-numbers nil
 
@@ -498,12 +513,6 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config)
-
   ;; (use-package langtool
   ;;   :preface
   ;;   (setq langtool-language-tool-jar "~/Downloads/LanguageTool-4.2/languagetool-commandline.jar"))
@@ -525,48 +534,6 @@ before packages are loaded."
 
   (add-to-list 'auto-mode-alist '("\\.mngtex\\'" . tex-mode))
 
-  (use-package hledger-mode
-    :mode ("\\.journal\\'" "\\.hledger\\'")
-    :preface
-    (defun hledger/next-entry ()
-      "Move to next entry and pulse."
-      (interactive)
-      (hledger-next-or-new-entry)
-      (hledger-pulse-momentary-current-entry))
-    (defun hledger/prev-entry ()
-      "Move to last entry and pulse."
-      (interactive)
-      (hledger-backward-entry)
-      (hledger-pulse-momentary-current-entry))
-
-
-    :bind (("C-c j" . hledger-run-command)
-           :map hledger-mode-map
-           ("M-p" . hledger/prev-entry)
-           ("M-n" . hledger/next-entry))
-
-    :init
-    (progn
-      (spacemacs/set-leader-keys-for-major-mode 'hledger-mode
-        "r" 'hledger-run-command
-        "a" 'hledger-jentry
-        "b" 'hledger-edit-amount)
-      (add-to-list 'evil-emacs-state-modes 'hledger-view-mode)
-      (setq hledger-jfile "~/Documents/personal/money.journal")
-      (setq hledger-show-expanded-report nil)
-      (setq hledger-currency-string "HKD"))
-    :config
-    (spacemacs|add-company-backends
-      :backends hledger-company
-      :modes hledger-mode))
-
-  (use-package hledger-input
-    :bind (("C-c e" . hledger-capture))
-    :config
-    (setq hledger-input-buffer-height 20)
-    (add-hook 'hledger-input-post-commit-hook #'hledger-show-new-balances)
-    (add-hook 'hledger-input-mode-hook #'auto-fill-mode))
-
   ;; (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
   ;;       TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view)))
 
@@ -580,34 +547,6 @@ before packages are loaded."
   ;; To suppress perl error
   ;; (exec-path-from-shell-copy-env "LANG")
   ;; (exec-path-from-shell-copy-env "COQPATH")
-
-  ;; (use-package ott-mode
-  ;;   :load-path "/Users/jeremybi/.nix-profile/share/emacs/site-lisp"
-  ;;   :mode "\\.ott\\'")
-
-  ;; (use-package quickrun
-  ;;   (progn
-  ;;     (quickrun-add-command "sedel"
-  ;;       '((:command . "sedel-exe")
-  ;;         (:exec . "%c %s")
-  ;;         (:tempfile . nil)
-  ;;         (:description . "Run SEDEL"))
-  ;;       :mode 'sedel-mode)
-
-  ;;     (push '("*quickrun*" :position bottom :height 0.3)
-  ;;           popwin:special-display-config)))
-
-  (use-package sedel-mode
-    :mode "\\.sl\\'"
-    :bind (:map sedel-mode-map
-                ("C-c C-r" . quickrun))
-    :load-path "~/Projects/first-class-trait/impl/elisp/")
-
-
-  (spacemacs/set-leader-keys-for-major-mode 'sedel-mode
-    ;; Shorthands: rebind the standard evil-mode combinations to the local
-    ;; leader for the keys not used as a prefix below.
-    "r" 'quickrun)
 
   (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
 
@@ -633,17 +572,6 @@ before packages are loaded."
     (spacemacs/set-leader-keys-for-major-mode 'agda2-mode
       "g."   'agda2-normalized-goal-and-context-and-inferred
       "g,"   'agda2-normalized-goal-and-context))
-
-
-  ;; (setq purpose-user-mode-purposes '((coq-mode . edit)
-  ;;                                    (tuareg-mode . edit)))
-  ;; (setq purpose-user-name-purposes '(("*goals*" . display)
-  ;;                                    ("*response*" . display)
-  ;;                                    ("*utop*" . repl)))
-  ;; (setq purpose-user-regexp-purposes '(("^\\*multiterm-[0-9]*\\*$" . terminal)
-  ;;                                      ("^\\*terminal<[0-9]>*\\*$" . terminal)))
-  ;; (purpose-compile-user-configuration) ; activates your changes
-
 
   (with-eval-after-load 'org
 
