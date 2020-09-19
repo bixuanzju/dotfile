@@ -106,8 +106,8 @@ alias rm='trash'
 
 export PATH="${HOME}/.emacs.d/bin:${HOME}/.local/bin:/usr/local/sbin:${PATH}"
 
-# OPAM configuration
-# . /Users/jeremybi/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 . $HOME/.ghcup/env
 
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -e /Users/jeremybi/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/jeremybi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+eval "$(direnv hook zsh)"
