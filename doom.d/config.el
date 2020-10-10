@@ -52,3 +52,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(after! lsp-haskell
+  (setq lsp-haskell-diagnostics-on-change nil
+        lsp-haskell-formatting-provider "fourmolu"))
